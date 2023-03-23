@@ -61,10 +61,10 @@ const Navbar = (props: Props) => {
 				}}
 				alignItems="center"
 				fontWeight="600">
-				<Button>Home</Button>
-				<Button>Music</Button>
-				<Button>Videos</Button>
-				<Button>Favourites</Button>
+				<Button url="/">Home</Button>
+				<Button url="/music">Music</Button>
+				<Button url="/videos">Videos</Button>
+				<Button url="/favourites">Favourites</Button>
 			</Stack>
 		</Stack>
 	);
