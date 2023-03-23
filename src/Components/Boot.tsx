@@ -2,16 +2,14 @@
 import React from "react";
 import "../Styles/boot.css";
 
-type Props = {};
-
-const Boot = (props: Props) => {
+const Boot = () => {
 	return (
 		<Stack
 			width={"100%"}
 			height="100vh"
 			alignItems={"center"}
 			justifyContent="center"
-			bgcolor={"black"}>
+			bgcolor={"#121212"}>
 			<img className="boot" src="/auraly_logo.png" alt="auraly_logo" />
 		</Stack>
 	);

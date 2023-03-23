@@ -1,5 +1,6 @@
 ﻿.boot {
 	opacity: 0.4;
+	max-width: 300px;
 	transition: all 0.3s;
 	animation: animate_boot 0.8s ease-in infinite alternate-reverse;
 }
