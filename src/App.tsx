@@ -1,9 +1,10 @@
-﻿import React from "react";
+import './App.css'
 
-type Props = {};
+function App() {
 
-const App = (props: Props) => {
-	return <div>App</div>;
-};
+  return (
+    <>App</>
+  )
+}
 
-export default App;
+export default App
