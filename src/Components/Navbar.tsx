@@ -8,14 +8,9 @@ type Props = {};
 const Navbar = (props: Props) => {
 	return (
 		<Stack
-			padding={{
-				xs: "0 0.1rem",
-				sm: "0 0.5rem",
-				md: "0 1rem",
-				lg: "0 5rem",
-				xl: "0 15rem",
-			}}
-			position="fixed"
+			position="sticky"
+			top="0"
+			sx={{ backdropFilter: "blur(5px)", borderRadius: "1rem" }}
 			zIndex="7"
 			direction={{
 				xs: "column",
@@ -53,7 +48,7 @@ const Navbar = (props: Props) => {
 					sm: "100%",
 					md: "50%",
 					lg: "50%",
-					xl: "50%",
+					xl: "40%",
 				}}
 				justifyContent="space-between"
 				direction={"row"}

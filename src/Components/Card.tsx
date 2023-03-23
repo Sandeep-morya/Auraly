@@ -1,32 +1,30 @@
 ﻿import { Box, Stack, useTheme } from "@mui/material";
 import React from "react";
-import { FaVideo, FaMusic } from "react-icons/fa";
+import { FaVideo, FaMusic, FaPlay } from "react-icons/fa";
 // @ts-ignore,
 import Marquee from "./Marquee";
 import { SearchResultType } from "../types";
-import "../Styles/card.css"
+import "../Styles/card.css";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
 	data: SearchResultType;
+	video?: boolean;
+	audio?: boolean;
 };
 
-const Card = ({ data }: Props) => {
+const Card = ({ data, video = true, audio = true }: Props) => {
 	const theme = useTheme();
+	const navigate = useNavigate();
 	return (
-		<Stack
-			whiteSpace={"nowrap"}
-			textOverflow="ellipsis"
-			gap="0.5rem"
-			width={{
-				xs: "10rem",
-				sm: "10rem",
-				md: "15rem",
-				lg: "18rem",
-				xl: "20rem",
-			}}>
-			<Box className="card_div" width="100%" height="100%" position={"relative"} overflow="hidden">
+		<Stack gap="0.5rem" sx={{ "&:hover": { scale: "1.2" } }}>
+			<Box
+				className="card_div"
+				sx={{ objectFit: "cover" }}
+				position={"relative"}
+				overflow="hidden">
 				<img
-					style={{ width: "100%", height: "100%", objectFit: "cover" }}
+					style={{ width: "100%", aspectRatio: "1280/720", objectFit: "cover" }}
 					src={data.thumbnail.url}
 					alt={data.title}
 				/>
@@ -43,11 +41,29 @@ const Card = ({ data }: Props) => {
 					gap="3rem"
 					fontSize={"2rem"}
 					bgcolor={theme.palette.primary.contrastText}>
-					<FaVideo />
-					<FaMusic />
+					{video && audio ? (
+						<FaVideo onClick={() => navigate("/single_video/" + data.id)} />
+					) : video ? (
+						<FaPlay onClick={() => navigate("/single_video/" + data.id)} />
+					) : null}
+
+					{audio && video ? (
+						<FaMusic onClick={() => navigate("/single_audio/" + data.id)} />
+					) : audio ? (
+						<FaPlay onClick={() => navigate("/single_audio/" + data.id)} />
+					) : null}
 				</Stack>
 			</Box>
-			<Marquee>{data.title}</Marquee>
+			<span
+				style={{
+					height: "2.5rem",
+					textOverflow: "ellipsis",
+					wordWrap: "break-word",
+					overflow: "hidden",
+					fontSize: "0.8rem",
+				}}>
+				{data.title}
+			</span>
 		</Stack>
 	);
 };

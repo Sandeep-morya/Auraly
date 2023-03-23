@@ -13,7 +13,7 @@ const Center = ({ children }: Props) => {
 				xs: "0 0.1rem",
 				sm: "0 0.5rem",
 				md: "0 1rem",
-				lg: "0 5rem",
+				lg: "0 2rem",
 				xl: "0 15rem",
 			}}>
 			{children}
