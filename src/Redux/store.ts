@@ -1,6 +1,7 @@
 ﻿import { legacy_createStore, combineReducers } from "redux";
 import authReducer from "./auth/auth.reducer";
-import searchDataReducer from "./seachData/search_data.reducer";
+import searchDataReducer from "./searchData/search_data.reducer";
+
 const rootReducer = combineReducers({
 	auth: authReducer,
 	searchData: searchDataReducer,

@@ -11,7 +11,7 @@ import SearchBox from "../Components/SearchBox";
 import VideoGrid from "../Components/VideoGrid";
 import { useAppDispatch, useAppSelector } from "../Hooks/Redux_hooks";
 import useDebounce from "../Hooks/useDebounce";
-import getSearchResult from "../Redux/seachData/search_data.actions";
+import getSearchResult from "../Redux/searchData/search_data.actions";
 
 type Props = {};
 
