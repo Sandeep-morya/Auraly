@@ -1,12 +1,16 @@
 ﻿import { useTheme } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import React from "react";
 
 type Props = {};
 
 const Logo = (props: Props) => {
 	const theme = useTheme();
+	const navigate = useNavigate();
 	return (
-		<div style={{ width: "10rem", scale: "0.4" }}>
+		<div
+			onClick={() => navigate("/")}
+			style={{ width: "10rem", transform: "scale(0.4) translateX(-60%)" }}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				version="1.1"

@@ -9,6 +9,7 @@ import {
 	ThemeProvider,
 	useMediaQuery,
 } from "@mui/material";
+import AllRoutes from "./Routes";
 
 function App() {
 	const [hidden, setHidden] = useState(false);
@@ -48,6 +49,7 @@ function App() {
 						xl: "0 15rem",
 					}}>
 					<Navbar />
+					<AllRoutes />
 				</Stack>
 			)}
 		</ThemeProvider>

@@ -1,4 +1,11 @@
-﻿import { Avatar, Stack, TextField, Typography, useTheme } from "@mui/material";
+﻿import {
+	Avatar,
+	Box,
+	Stack,
+	TextField,
+	Typography,
+	useTheme,
+} from "@mui/material";
 import React from "react";
 import Logo from "./Logo";
 import { MdSearch } from "react-icons/md";
@@ -35,20 +42,26 @@ const Navbar = (props: Props) => {
 
 				<Avatar
 					alt="Remy Sharp"
-					src="https://res.cloudinary.com/due9pi68z/image/upload/v1679150892/tgxg96102yhtqqgyi3us.png"
+					src="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
 				/>
 			</Stack>
 			<Stack
 				width={{
 					xs: "100%",
 					sm: "100%",
-					md: "30%",
-					lg: "30%",
-					xl: "30%",
+					md: "50%",
+					lg: "50%",
+					xl: "50%",
 				}}
 				justifyContent="space-between"
 				direction={"row"}
-				fontSize="1.2rem"
+				fontSize={{
+					xs: "1rem",
+					sm: "1rem",
+					md: "1.1rem",
+					lg: "1.2rem",
+					xl: "1.2rem",
+				}}
 				alignItems="center"
 				padding="0.5rem"
 				fontWeight="600">
@@ -56,17 +69,10 @@ const Navbar = (props: Props) => {
 				<Button>Music</Button>
 				<Button>Videos</Button>
 				<Button>Movies</Button>
+				<Button>Library</Button>
 			</Stack>
 		</Stack>
 	);
 };
 
 export default Navbar;
-
-/* <Stack
-
-			justifyContent="space-between"
-			alignItems="center"
-			p={"1rem"}>
-
-		</Stack> */
