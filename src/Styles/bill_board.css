@@ -1,0 +1,9 @@
+﻿.bill_board {
+	width: 100%;
+}
+.bill_board video {
+	width: 100vw;
+	height: 70vh;
+	object-fit: cover;
+	opacity: 0.4;
+}

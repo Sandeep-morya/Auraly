@@ -1,7 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif !important;
+	font-family: "Quicksand", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+		sans-serif !important;
 	transition: all 0.3s;
+	text-shadow: 0 0 2px rgba(0, 0, 0, 0.404);
+}
+body {
+	overflow-x: hidden;
 }

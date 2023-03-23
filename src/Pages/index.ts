@@ -1,7 +1,7 @@
 ﻿export { default as Home } from "./Home";
-// export { default as Login } from "./Login";
-// export { default as Posts } from "./Posts";
-// export { default as Todos } from "./Todos";
-// export { default as Create } from "./Create";
-// export { default as Users } from "./Users";
+export { default as Login } from "./Login";
+export { default as SingleVideo } from "./SingleVideo";
+export { default as Videos } from "./Videos";
+export { default as Music } from "./Music";
+export { default as Favourites } from "./Favourites";
 export { default as Error } from "./Error";

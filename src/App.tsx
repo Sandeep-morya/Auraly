@@ -39,19 +39,7 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			{!hidden && <Boot />}
-			{hidden && (
-				<Stack
-					padding={{
-						xs: "0 0.1rem",
-						sm: "0 0.5rem",
-						md: "0 1rem",
-						lg: "0 5rem",
-						xl: "0 15rem",
-					}}>
-					<Navbar />
-					<AllRoutes />
-				</Stack>
-			)}
+			{hidden && <AllRoutes />}
 		</ThemeProvider>
 	);
 }
