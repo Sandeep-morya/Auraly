@@ -15,8 +15,8 @@ const Navbar = (props: Props) => {
 				lg: "0 5rem",
 				xl: "0 15rem",
 			}}
-      position="absolute"
-      zIndex="7"
+			position="absolute"
+			zIndex="7"
 			direction={{
 				xs: "column",
 				sm: "column",
@@ -65,7 +65,6 @@ const Navbar = (props: Props) => {
 					xl: "1.2rem",
 				}}
 				alignItems="center"
-				padding="0.5rem"
 				fontWeight="600">
 				<Button>Home</Button>
 				<Button>Music</Button>

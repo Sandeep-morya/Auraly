@@ -10,7 +10,7 @@ const Button = ({ children }: Props) => {
 		<Box
 			sx={{
 				cursor: "pointer",
-				padding: "0.5rem",
+				padding: "0.3rem 0.8rem",
 				borderRadius: "1rem",
 				"&:hover": {
 					opacity: "0.7",
