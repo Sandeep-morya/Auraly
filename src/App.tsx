@@ -12,7 +12,7 @@ import {
 import AllRoutes from "./Routes";
 
 function App() {
-	const [hidden, setHidden] = useState(false);
+	const [hidden, setHidden] = useState(true);
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
 	const theme = React.useMemo(

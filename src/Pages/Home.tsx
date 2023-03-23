@@ -1,8 +1,10 @@
 ﻿import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
 import Billboard from "../Components/Billboard";
+import Card from "../Components/Card";
 import Center from "../Components/Center";
 import Navbar from "../Components/Navbar";
+import { result } from "./data";
 
 type Props = {};
 
@@ -12,9 +14,17 @@ const Home = (props: Props) => {
 			<Navbar />
 			<Billboard />
 			<Center>
-				<Stack>
+				<Stack gap={"1rem"}>
 					<Typography variant="h4">Trending</Typography>
-					<Stack direction="row" gap="1rem"></Stack>
+					<Stack flexWrap="wrap" direction="row" gap="1rem">
+						{result.map((data) => (
+							<Card
+								key={data.id}
+								data={data}
+
+							/>
+						))}
+					</Stack>
 				</Stack>
 			</Center>
 		</Stack>

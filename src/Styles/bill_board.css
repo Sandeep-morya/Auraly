@@ -3,7 +3,7 @@
 }
 .bill_board video {
 	width: 100vw;
-	height: 70vh;
+	height: 65vh;
 	object-fit: cover;
 	opacity: 0.4;
 }

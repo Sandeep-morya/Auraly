@@ -15,7 +15,7 @@ const Navbar = (props: Props) => {
 				lg: "0 5rem",
 				xl: "0 15rem",
 			}}
-			position="absolute"
+			position="fixed"
 			zIndex="7"
 			direction={{
 				xs: "column",
