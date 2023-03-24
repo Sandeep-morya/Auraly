@@ -1,6 +1,6 @@
 ﻿.single_video_div {
 	width: 100%;
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	position: relative;
 }
 .single_video {
@@ -8,3 +8,12 @@
 	aspect-ratio: 1280/720;
 	object-fit: cover;
 }
+
+.options {
+	/* border: 1px solid red; */
+	padding: 1rem;
+}
+
+/* .video_playlist::-webkit-scrollbar {
+	display: none;
+} */
