@@ -16,7 +16,7 @@ export const getTrendingVideos = async (
 	dispatch({ type: TV_LOADING });
 	try {
 		const options = {
-			params: { query: "trending_videos", safesearch: "false" },
+			params: { query: "trending", safesearch: "false" },
 			headers: {
 				"X-RapidAPI-Key": api_key,
 				"X-RapidAPI-Host": api_host,

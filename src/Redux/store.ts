@@ -7,7 +7,7 @@ import tmReducer from "./trendingMusic/tm.reducer";
 const rootReducer = combineReducers({
 	auth: authReducer,
 	searchData: searchDataReducer,
-	trendigVideos: tvReducer,
+	trendingVideos: tvReducer,
 	trendingMusic: tmReducer,
 });
 

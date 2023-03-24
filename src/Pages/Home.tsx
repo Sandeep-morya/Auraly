@@ -21,9 +21,9 @@ const Home = (props: Props) => {
 	const [text, setText] = React.useState("");
 	const query = useDebounce(text);
 	const searchResult = useAppSelector((store) => store.searchData);
-	const trendingVideos = useAppSelector((store) => store.trendigVideos);
+	const trendingVideos = useAppSelector((store) => store.trendingVideos);
 	const trendingMusic = useAppSelector((store) => store.trendingMusic);
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	// console.log(list);
 
@@ -43,7 +43,10 @@ const Home = (props: Props) => {
 		<Stack width="100%" position="relative" top="0" gap={"2rem"}>
 			<SearchBox {...{ text, setText }} />
 			{searchResult.list.length > 0 && (
-				<VideoGrid title="Search Result" items={searchResult.list} />
+				<VideoGrid
+					title={text ? "Search Result" : "Recent Search"}
+					items={searchResult.list}
+				/>
 			)}
 			<VideoGrid
 				audio={false}
