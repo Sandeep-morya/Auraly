@@ -12,25 +12,49 @@ import VideoGrid from "../Components/VideoGrid";
 import { useAppDispatch, useAppSelector } from "../Hooks/Redux_hooks";
 import useDebounce from "../Hooks/useDebounce";
 import getSearchResult from "../Redux/searchData/search_data.actions";
+import { getTrendingMusic } from "../Redux/trendingMusic/tm.action";
+import { getTrendingVideos } from "../Redux/trendingVideos/tv.action";
 
 type Props = {};
 
 const Home = (props: Props) => {
-	const [text, setText] = React.useState("trending");
+	const [text, setText] = React.useState("");
 	const query = useDebounce(text);
-	const { loading, error, list } = useAppSelector((store) => store.searchData);
+	const searchResult = useAppSelector((store) => store.searchData);
+	const trendingVideos = useAppSelector((store) => store.trendigVideos);
+	const trendingMusic = useAppSelector((store) => store.trendingMusic);
 	const dispatch = useDispatch();
 
-	console.log(list);
+	// console.log(list);
 
 	React.useEffect(() => {
 		getSearchResult(dispatch, query);
 	}, [query]);
 
+	React.useEffect(() => {
+		getTrendingVideos(dispatch, trendingVideos.list);
+	}, []);
+
+	React.useEffect(() => {
+		getTrendingMusic(dispatch, trendingMusic.list);
+	}, []);
+
 	return (
-		<Stack width="100%" position="relative" top="0" gap={"1rem"}>
+		<Stack width="100%" position="relative" top="0" gap={"2rem"}>
 			<SearchBox {...{ text, setText }} />
-			<VideoGrid title="Trending" items={list} />
+			{searchResult.list.length > 0 && (
+				<VideoGrid title="Search Result" items={searchResult.list} />
+			)}
+			<VideoGrid
+				audio={false}
+				title="Trending Videos"
+				items={trendingVideos.list}
+			/>
+			<VideoGrid
+				video={false}
+				title="Latest Music"
+				items={trendingMusic.list}
+			/>
 		</Stack>
 	);
 };

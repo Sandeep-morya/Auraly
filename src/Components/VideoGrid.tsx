@@ -7,9 +7,11 @@ import Heading from "./Heading";
 type Props = {
 	title: string;
 	items: SearchResultType[];
+	audio?: boolean;
+	video?: boolean;
 };
 
-const VideoGrid = ({ items, title }: Props) => {
+const VideoGrid = ({ items, title, audio = true, video = true }: Props) => {
 	return (
 		<Stack gap={"1rem"}>
 			<Heading {...{ title }} />
@@ -26,7 +28,7 @@ const VideoGrid = ({ items, title }: Props) => {
 					gap: "2rem",
 				}}>
 				{items.map((data) => (
-					<Card key={data.id} data={data} />
+					<Card key={data.id} {...{ data, audio, video }} />
 				))}
 			</Box>
 		</Stack>

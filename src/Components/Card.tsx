@@ -9,11 +9,11 @@ import { useNavigate } from "react-router-dom";
 
 type Props = {
 	data: SearchResultType;
-	video?: boolean;
-	audio?: boolean;
+	video: boolean;
+	audio: boolean;
 };
 
-const Card = ({ data, video = true, audio = true }: Props) => {
+const Card = ({ data, video, audio }: Props) => {
 	const theme = useTheme();
 	const navigate = useNavigate();
 	return (

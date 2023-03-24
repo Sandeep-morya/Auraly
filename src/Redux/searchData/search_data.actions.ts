@@ -9,7 +9,7 @@ const api_key = import.meta.env.VITE_API_SEARCH_KEY;
 const api_host = import.meta.env.VITE_API_SEARCH_HOST;
 const api_url = import.meta.env.VITE_API_SEARCH_URL;
 
-async function getSearchResult(dispatch: any, query: string) {
+function getSearchResult(dispatch: any, query: string) {
 	console.log(api_key, api_host, api_url);
 	if (query === "") {
 		return;
