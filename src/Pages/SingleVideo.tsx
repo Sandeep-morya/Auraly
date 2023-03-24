@@ -37,13 +37,13 @@ const SingleVideo = (props: Props) => {
 	const searchResult = useAppSelector((store) => store.searchData);
 	const dispatch = useAppDispatch();
 
-	useEffect(() => {
-		// videoRef.current?.autoplay = true;
-		// videoRef.current.muted = false;
-		setTimeout(() => {
-			videoRef.current!.play();
-		}, 5000);
-	}, []);
+	// useEffect(() => {
+	// 	// videoRef.current?.autoplay = true;
+	// 	// videoRef.current.muted = false;
+	// 	setTimeout(() => {
+	// 		videoRef.current!.play();
+	// 	}, 5000);
+	// }, []);
 
 	useEffect(() => {
 		getSearchResult(dispatch, query);
@@ -81,7 +81,7 @@ const SingleVideo = (props: Props) => {
 					<Box className="single_video_div">
 						<video
 							playsInline
-							autoPlay
+							// autoPlay
 							controls
 							onLoad={(e) => videoRef.current!.play()}
 							preload="none"
@@ -102,7 +102,8 @@ const SingleVideo = (props: Props) => {
 							xl: "row",
 						}}
 						gap="2rem"
-						justifyContent={"space-between"}>
+						justifyContent={"space-between"}
+						alignItems="center">
 						{/* change reselution */}
 						{/*  */}
 						<Stack
@@ -125,6 +126,9 @@ const SingleVideo = (props: Props) => {
 								lg: "50%",
 								xl: "50%",
 							}}
+							className="video_options"
+							justifyContent="space-between"
+							alignItems="center"
 							gap="2rem"
 							direction="row">
 							<SelectBox
@@ -133,6 +137,7 @@ const SingleVideo = (props: Props) => {
 								label="Formats"
 								formats={data.formats}
 							/>
+
 							<Button
 								leftIcon={<FaDownload />}
 								size="lg"

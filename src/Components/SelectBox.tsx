@@ -1,4 +1,5 @@
 ﻿import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { Stack } from "@mui/system";
 import React, { SetStateAction } from "react";
 import { Format } from "../types";
 
@@ -19,7 +20,7 @@ const SelectBox = ({ label, formats, format, setFormat }: Props) => {
 		return format;
 	}
 	return (
-		<FormControl sx={{ flex: 1 }}>
+		<FormControl>
 			<InputLabel id="demo-simple-select-label">{label}</InputLabel>
 			<Select
 				labelId="demo-simple-select-label"
