@@ -1,11 +1,11 @@
-﻿import React from 'react'
+﻿import React from "react";
+import { result } from "./data";
 
-type Props = {}
+type Props = {};
 
 const SingleVideo = (props: Props) => {
-  return (
-    <div>SingleVideo</div>
-  )
-}
+	const [data, setData] = React.useState(result);
+	return <div>SingleVideo</div>;
+};
 
 export default SingleVideo;

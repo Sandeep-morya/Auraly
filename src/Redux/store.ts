@@ -3,12 +3,14 @@ import authReducer from "./auth/auth.reducer";
 import searchDataReducer from "./searchData/search_data.reducer";
 import tvReducer from "./trendingVideos/tv.reducer";
 import tmReducer from "./trendingMusic/tm.reducer";
+import singleReducer from "./singleItem/single.reducer";
 
 const rootReducer = combineReducers({
 	auth: authReducer,
 	searchData: searchDataReducer,
 	trendingVideos: tvReducer,
 	trendingMusic: tmReducer,
+	single: singleReducer,
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

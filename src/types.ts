@@ -39,3 +39,76 @@ export interface Thumbnail {
 	id: string;
 	width: number;
 }
+
+/* Single Item */
+
+export interface SingleItem {
+	status: string;
+	id: string;
+	title: string;
+	lengthSeconds: string;
+	keywords: string[];
+	channelTitle: string;
+	channelId: string;
+	description: string;
+	thumbnail: SingleThumbnail[];
+	allowRatings: boolean;
+	viewCount: string;
+	isPrivate: boolean;
+	isUnpluggedCorpus: boolean;
+	isLiveContent: boolean;
+	storyboards: Storyboard[];
+	expiresInSeconds: string;
+	formats: Format[];
+	adaptiveFormats: Format[];
+}
+
+export interface Format {
+	itag: number;
+	url: string;
+	mimeType: string;
+	bitrate: number;
+	width?: number;
+	height?: number;
+	contentLength?: string;
+	quality: string;
+	fps?: number;
+	qualityLabel?: string;
+	projectionType: string;
+	averageBitrate?: number;
+	approxDurationMs: string;
+	highReplication?: boolean;
+	audioQuality?: string;
+	audioSampleRate?: string;
+	audioChannels?: number;
+	loudnessDb?: number;
+}
+
+export enum ProjectionType {
+	Rectangular = "RECTANGULAR",
+}
+
+export enum Quality {
+	Hd720 = "hd720",
+	Large = "large",
+	Medium = "medium",
+	Small = "small",
+	Tiny = "tiny",
+}
+
+export interface Storyboard {
+	width: string;
+	height: string;
+	thumbsCount: string;
+	columns: string;
+	rows: string;
+	interval: string;
+	storyboardCount: number;
+	url: string[];
+}
+
+export interface SingleThumbnail {
+	url: string;
+	width: number;
+	height: number;
+}
