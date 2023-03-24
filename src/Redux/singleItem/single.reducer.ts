@@ -12,7 +12,7 @@ const initalState = {
 };
 
 function reducer(
-	state: typeof initalState,
+	state = initalState,
 	action: { type: string; payload: SingleItem },
 ): typeof initalState {
 	switch (action.type) {

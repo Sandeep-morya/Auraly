@@ -10,7 +10,7 @@ const api_host = import.meta.env.VITE_API_SEARCH_HOST;
 const api_url = import.meta.env.VITE_API_SEARCH_URL;
 
 function getSearchResult(dispatch: any, query: string) {
-	console.log(api_key, api_host, api_url);
+	// console.log(api_key, api_host, api_url);
 	if (query === "") {
 		return;
 	}

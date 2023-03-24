@@ -1,0 +1,10 @@
+﻿.single_video_div {
+	width: 100%;
+	border: 1px solid red;
+	position: relative;
+}
+.single_video {
+	width: 100%;
+	aspect-ratio: 1280/720;
+	object-fit: cover;
+}
