@@ -1,7 +1,9 @@
-﻿import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+﻿import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { Stack } from "@mui/system";
 import React, { SetStateAction } from "react";
 import { Format } from "../types";
+
+import "../Styles/select_box.css";
 
 type Props = {
 	formats: Format[];
@@ -20,25 +22,21 @@ const SelectBox = ({ label, formats, format, setFormat }: Props) => {
 		return format;
 	}
 	return (
-		<FormControl>
-			<InputLabel id="demo-simple-select-label">{label}</InputLabel>
-			<Select
-				labelId="demo-simple-select-label"
-				id="demo-simple-select"
+		<Box className="box">
+			<select
 				value={format.url}
-				label={label}
 				onChange={(e) => setFormat(findFormatWithUrl(e.target.value))}>
 				{formats.map((item, i) => (
-					<MenuItem key={item.url} selected={i === 0} value={item.url}>
+					<option key={item.url} value={item.url}>
 						{item.quality.toUpperCase() +
 							" - " +
 							item.width +
 							" X " +
 							item.height}
-					</MenuItem>
+					</option>
 				))}
-			</Select>
-		</FormControl>
+			</select>
+		</Box>
 	);
 };
 

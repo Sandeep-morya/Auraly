@@ -19,6 +19,8 @@ import VideoGrid from "../Components/VideoGrid";
 import useDebounce from "../Hooks/useDebounce";
 import getSearchResult from "../Redux/searchData/search_data.actions";
 import { useAppDispatch, useAppSelector } from "../Hooks/Redux_hooks";
+import { useLocation, useParams } from "react-router-dom";
+import { getSingle } from "../Redux/singleItem/single.action";
 
 type Props = {};
 
@@ -27,27 +29,44 @@ const SingleVideo = (props: Props) => {
 
 	const [text, setText] = React.useState("");
 	const query = useDebounce(text);
-
-	const [data, setData] = React.useState(result);
-	const [format, setFormat] = React.useState(
-		data.formats[data.formats.length - 1] as Format,
-	);
+	const { id } = useParams();
 
 	const videoRef = React.useRef<HTMLVideoElement>(null);
 	const searchResult = useAppSelector((store) => store.searchData);
+	const { loading, error, data } = useAppSelector((store) => store.single);
 	const dispatch = useAppDispatch();
 
-	// useEffect(() => {
-	// 	// videoRef.current?.autoplay = true;
-	// 	// videoRef.current.muted = false;
-	// 	setTimeout(() => {
-	// 		videoRef.current!.play();
-	// 	}, 5000);
-	// }, []);
+	const [format, setFormat] = React.useState({} as Format);
+	console.log(data);
+	//
+	useEffect(() => {
+		// videoRef.current?.autoplay = true;
+		// videoRef.current.muted = false;
+		setTimeout(() => {
+			videoRef.current!.play();
+		}, 1000);
+	}, []);
+
+	useEffect(() => {
+		if (id === undefined) {
+			return;
+		} else {
+			getSingle(dispatch, id);
+		}
+	}, []);
 
 	useEffect(() => {
 		getSearchResult(dispatch, query);
 	}, [query]);
+
+	useEffect(() => {
+		if (data?.formats?.length > 0)
+			setFormat(data.formats[data.formats.length - 1]);
+	}, [data]);
+
+	if (data?.formats?.length < 1) {
+		return <></>;
+	}
 	return (
 		<Stack width="100%" position="relative" top="0" gap={"2rem"}>
 			<SearchBox {...{ text, setText }} />
@@ -65,12 +84,6 @@ const SingleVideo = (props: Props) => {
 				justifyContent={"space-between"}>
 				{/* Left side */}
 				<Stack
-					height="100vh"
-					sx={{
-						overflowY: "scroll",
-						overflowX: "hidden",
-						"&::-webkit-scrollbar": { display: "none" },
-					}}
 					width={{
 						xs: "100%",
 						sm: "100%",
@@ -81,7 +94,7 @@ const SingleVideo = (props: Props) => {
 					<Box className="single_video_div">
 						<video
 							playsInline
-							// autoPlay
+							autoPlay
 							controls
 							onLoad={(e) => videoRef.current!.play()}
 							preload="none"
@@ -129,7 +142,6 @@ const SingleVideo = (props: Props) => {
 							className="video_options"
 							justifyContent="space-between"
 							alignItems="center"
-							gap="2rem"
 							direction="row">
 							<SelectBox
 								format={format}
@@ -142,8 +154,11 @@ const SingleVideo = (props: Props) => {
 								leftIcon={<FaDownload />}
 								size="lg"
 								onClick={() => console.log(format)}
-								style={{ width: "40%", color: theme.palette.text.primary }}
-								colorScheme={theme.palette.secondary.main}>
+								style={{
+									width: "40%",
+									color: theme.palette.primary.contrastText,
+								}}
+								colorScheme={theme.palette.text.primary}>
 								{"Downlaod"}
 							</Button>
 						</Stack>
@@ -157,11 +172,11 @@ const SingleVideo = (props: Props) => {
 				{/* RightSide */}
 				<Stack
 					height="100vh"
-					sx={{
-						overflowY: "scroll",
-						overflowX: "hidden",
-						"&::-webkit-scrollbar": { display: "none" },
-					}}
+					// sx={{
+					// 	overflowY: "scroll",
+					// 	overflowX: "hidden",
+					// 	"&::-webkit-scrollbar": { display: "none" },
+					// }}
 					padding={"0 1rem"}
 					width={{
 						xs: "100%",
