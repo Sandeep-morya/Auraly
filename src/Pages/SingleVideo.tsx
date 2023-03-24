@@ -19,8 +19,13 @@ import VideoGrid from "../Components/VideoGrid";
 import useDebounce from "../Hooks/useDebounce";
 import getSearchResult from "../Redux/searchData/search_data.actions";
 import { useAppDispatch, useAppSelector } from "../Hooks/Redux_hooks";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getSingle } from "../Redux/singleItem/single.action";
+import axios, { Axios } from "axios";
+import download from "downloadjs";
+// import download from "downloadjs";
+//ts ignore
+import { Navigate } from "react-router-dom";
 
 type Props = {};
 
@@ -37,7 +42,8 @@ const SingleVideo = (props: Props) => {
 	const dispatch = useAppDispatch();
 
 	const [format, setFormat] = React.useState({} as Format);
-	console.log(data);
+	// console.log(data);
+
 	//
 	useEffect(() => {
 		// videoRef.current?.autoplay = true;
@@ -53,20 +59,28 @@ const SingleVideo = (props: Props) => {
 		} else {
 			getSingle(dispatch, id);
 		}
-	}, []);
+	}, [id]);
 
 	useEffect(() => {
-		getSearchResult(dispatch, query);
-	}, [query]);
+		getSearchResult(dispatch, query || data.keywords[0]);
+	}, [query, data.keywords]);
 
 	useEffect(() => {
 		if (data?.formats?.length > 0)
 			setFormat(data.formats[data.formats.length - 1]);
 	}, [data]);
 
-	if (data?.formats?.length < 1) {
-		return <></>;
+	// if (data?.formats?.length < 1) {
+	// 	return <></>;
+	// }
+	if (loading) {
+		return <>Loading...</>;
 	}
+
+	if (error) {
+		return <Navigate to={"/error"} />;
+	}
+
 	return (
 		<Stack width="100%" position="relative" top="0" gap={"2rem"}>
 			<SearchBox {...{ text, setText }} />
@@ -102,7 +116,7 @@ const SingleVideo = (props: Props) => {
 							// muted
 							ref={videoRef}
 							src={format.url}
-							poster={data.thumbnail[data.thumbnail.length - 1].url}
+							poster={data.thumbnail[data.thumbnail?.length - 1].url}
 							className="single_video"></video>
 					</Box>
 					<Stack
@@ -153,13 +167,13 @@ const SingleVideo = (props: Props) => {
 							<Button
 								leftIcon={<FaDownload />}
 								size="lg"
-								onClick={() => console.log(format)}
+								onClick={() => console.log(format.url)}
 								style={{
 									width: "40%",
 									color: theme.palette.primary.contrastText,
 								}}
 								colorScheme={theme.palette.text.primary}>
-								{"Downlaod"}
+								{"Download"}
 							</Button>
 						</Stack>
 					</Stack>
@@ -172,11 +186,11 @@ const SingleVideo = (props: Props) => {
 				{/* RightSide */}
 				<Stack
 					height="100vh"
-					// sx={{
-					// 	overflowY: "scroll",
-					// 	overflowX: "hidden",
-					// 	"&::-webkit-scrollbar": { display: "none" },
-					// }}
+					sx={{
+						overflowY: "scroll",
+						overflowX: "hidden",
+						"&::-webkit-scrollbar": { display: "none" },
+					}}
 					padding={"0 1rem"}
 					width={{
 						xs: "100%",

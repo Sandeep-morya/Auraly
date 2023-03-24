@@ -1,4 +1,5 @@
-﻿import { SingleItem } from "../../types";
+﻿import { result } from "../../Pages/data";
+import { SingleItem } from "../../types";
 import {
 	SINGLE_LOADING,
 	SINGLE_ERROR,
@@ -8,7 +9,7 @@ import {
 const initalState = {
 	loading: false,
 	error: false,
-	data: {} as SingleItem,
+	data: result as SingleItem,
 };
 
 function reducer(
