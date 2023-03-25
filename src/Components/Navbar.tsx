@@ -3,9 +3,22 @@ import React from "react";
 import Logo from "./Logo";
 import { MdSearch } from "react-icons/md";
 import Button from "./Button";
+import SearchBox from "./SearchBox";
+import useDebounce from "../Hooks/useDebounce";
+import { useAppDispatch, useAppSelector } from "../Hooks/Redux_hooks";
+import getSearchResult from "../Redux/searchData/search_data.actions";
 type Props = {};
 
 const Navbar = (props: Props) => {
+	const [text, setText] = React.useState("");
+	const query = useDebounce(text);
+	const { loading, data, error } = useAppSelector((store) => store.single);
+	const dispatch = useAppDispatch();
+
+	React.useEffect(() => {
+		getSearchResult(dispatch, query || data.keywords[0]);
+	}, [query, data.keywords]);
+
 	return (
 		<Stack
 			position="sticky"
@@ -20,7 +33,7 @@ const Navbar = (props: Props) => {
 				xl: "row",
 			}}
 			width="100%"
-			pt="0.5rem"
+			p="1.5rem 0"
 			alignItems="center"
 			justifyContent={"space-between"}>
 			<Stack
@@ -61,10 +74,7 @@ const Navbar = (props: Props) => {
 				}}
 				alignItems="center"
 				fontWeight="600">
-				<Button url="/">Home</Button>
-				<Button url="/music">Music</Button>
-				<Button url="/videos">Videos</Button>
-				<Button url="/favourites">Favourites</Button>
+				<SearchBox {...{ text, setText }} />
 			</Stack>
 		</Stack>
 	);

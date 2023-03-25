@@ -118,4 +118,5 @@ export interface PlayerDataType {
 	paused?: boolean;
 	active?: boolean;
 	muted?: boolean;
+	current?: number;
 }

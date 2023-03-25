@@ -1,5 +1,6 @@
 ﻿import { Box, Stack, useTheme } from "@mui/material";
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { useAppSelector } from "../Hooks/Redux_hooks";
 // import { result as data } from "../Pages/data";
 import { PlayerDataContext } from "../Provider/PlayerContextProvider";
@@ -9,8 +10,33 @@ import { SingleItem } from "../types";
 const AudioPlayer = () => {
 	const { loading, error, data } = useAppSelector((store) => store.single);
 	const { playerData, setPlayerData } = React.useContext(PlayerDataContext);
-	const { active, muted, paused } = playerData;
+	const audioRef = React.useRef<HTMLAudioElement>(null);
+	const { active, muted, paused, current } = playerData;
 	const theme = useTheme();
+
+	const location = useLocation();
+
+	console.log(location, active);
+
+	React.useEffect(() => {
+		setPlayerData(
+			location.pathname.includes("preview")
+				? {
+						...playerData,
+						active: false,
+						muted: true,
+						current: audioRef.current?.currentTime,
+				  }
+				: {
+						...playerData,
+						active: location.state ? true : active,
+						muted: false,
+				  },
+		);
+	}, [location]);
+	if (!active) {
+		return <></>;
+	}
 
 	return (
 		<Box
@@ -23,7 +49,7 @@ const AudioPlayer = () => {
 					xl: "calc(100vw - 30rem)",
 				},
 				position: "fixed",
-				bottom: active ? "2rem" : "-10rem" /*  {
+				bottom: playerData.active ? "2rem" : "-10rem" /*  {
 					xs: active ? "7rem" : "-10rem",
 					sm: active ? "7rem" : "-10rem",
 					md: active ? "2rem" : "-10rem",
@@ -33,17 +59,14 @@ const AudioPlayer = () => {
 			<Stack
 				sx={{
 					width: "100%",
-					backgroundColor:
-						theme.palette.text.primary === "#fff" ? "#f1f3f4" : "#2d2e34",
-					borderRadius: {
-						sx: "0.3rem",
-						sm: "0.5rem",
-						md: "0.5rem",
-					},
-					padding: "0.25rem 1rem",
+					position: "relative",
+
+					borderRadius: "0.5rem",
+					padding: "0.5rem",
 					backdropFilter: "blur(5px) brightness(500%)",
 					alignItems: "center",
 					transition: "all 0.5s",
+					overflow: "hidden",
 				}}
 				gap="1rem"
 				direction={{
@@ -53,6 +76,17 @@ const AudioPlayer = () => {
 					lg: "row",
 					xl: "row",
 				}}>
+				<img
+					style={{
+						width: "100%",
+						position: "absolute",
+						filter: "blur(5px) brightness(50%)",
+						objectFit: "cover",
+					}}
+					src={data.thumbnail[data.thumbnail.length - 1].url}
+					alt=""
+				/>
+
 				<Stack
 					width={{
 						xs: "100%",
@@ -72,6 +106,7 @@ const AudioPlayer = () => {
 							borderRadius: "50%",
 							position: "relative",
 							overflow: "hidden",
+
 							boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
 							animation: !paused
 								? "animateRound 5s infinite 0s forwards linear"
@@ -90,19 +125,9 @@ const AudioPlayer = () => {
 							alt=""
 						/>
 					</Box>
-					<Stack>
-						<p
-							style={{
-								color: theme.palette.text.primary === "#fff" ? "#000" : "#fff",
-							}}>
-							{data.title.slice(0, 70) + "..."}
-						</p>
-						<p
-							style={{
-								color: theme.palette.text.primary === "#fff" ? "#000" : "#fff",
-							}}>
-							{data.channelTitle}
-						</p>
+					<Stack sx={{ zIndex: "2", fontWeight: "600" }}>
+						<p>{data.title.slice(0, 30) + "..."}</p>
+						<p>{data.channelTitle}</p>
 					</Stack>
 				</Stack>
 
@@ -111,10 +136,13 @@ const AudioPlayer = () => {
 					onPlay={() =>
 						setPlayerData({ ...playerData, muted: false, paused: false })
 					}
-					src={data.formats[0].url}
+					ref={audioRef}
+					src={`${data.formats[data.formats.length - 1].url}#t=${
+						playerData.current
+					}`}
 					style={{ width: "100%" }}
 					controls
-					muted={muted}
+					muted={playerData.muted}
 					autoPlay>
 					{/* {data.adaptiveFormats.map((format) => (
 					<source key={format.itag} src={format.url} type="audio/*" />

@@ -6,10 +6,14 @@ import {
 	SINGLE_SUCCESSFULL,
 } from "./single.type";
 
+const previousData = JSON.parse(
+	localStorage.getItem("trackData") as string,
+) as SingleItem;
+
 const initalState = {
 	loading: false,
 	error: false,
-	data: result as SingleItem,
+	data: previousData || (result as SingleItem),
 };
 export type SingleItemState = typeof initalState;
 

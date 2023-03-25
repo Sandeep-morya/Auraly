@@ -18,18 +18,12 @@ import { getTrendingVideos } from "../Redux/trendingVideos/tv.action";
 type Props = {};
 
 const Home = (props: Props) => {
-	const [text, setText] = React.useState("");
-	const query = useDebounce(text);
 	const searchResult = useAppSelector((store) => store.searchData);
 	const trendingVideos = useAppSelector((store) => store.trendingVideos);
 	const trendingMusic = useAppSelector((store) => store.trendingMusic);
 	const dispatch = useAppDispatch();
 
 	// console.log(list);
-
-	React.useEffect(() => {
-		getSearchResult(dispatch, query);
-	}, [query]);
 
 	React.useEffect(() => {
 		getTrendingVideos(dispatch, trendingVideos.list);
@@ -41,12 +35,8 @@ const Home = (props: Props) => {
 
 	return (
 		<Stack width="100%" position="relative" top="0" gap={"2rem"}>
-			<SearchBox {...{ text, setText }} />
 			{searchResult.list.length > 0 && (
-				<VideoGrid
-					title={text ? "Search Result" : "Recent Search"}
-					items={searchResult.list}
-				/>
+				<VideoGrid title="Recent Search" items={searchResult.list} />
 			)}
 			<VideoGrid
 				audio={false}

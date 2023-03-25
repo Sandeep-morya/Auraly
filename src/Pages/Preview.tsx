@@ -11,7 +11,7 @@ import React, { useEffect, useContext } from "react";
 import SearchBox from "../Components/SearchBox";
 import { Format } from "../types";
 import { result } from "./data";
-import "../Styles/single_video.css";
+import "../Styles/preview.css";
 import SelectBox from "../Components/SelectBox";
 import { FaDownload, FaHeart, FaRegHeart } from "react-icons/fa";
 import Description from "../Components/Description";
@@ -31,29 +31,20 @@ import { PlayerDataContext } from "../Provider/PlayerContextProvider";
 
 type Props = {};
 
-const SingleVideo = (props: Props) => {
+const Preview = (props: Props) => {
 	const theme = useTheme();
-	const { playerData, setPlayerData } = useContext(PlayerDataContext);
-
-	const [text, setText] = React.useState("");
-	const query = useDebounce(text);
 	const { id } = useParams();
 
 	const videoRef = React.useRef<HTMLVideoElement>(null);
+	const [format, setFormat] = React.useState({} as Format);
+	const { playerData, setPlayerData } = useContext(PlayerDataContext);
+
+	const dispatch = useAppDispatch();
 	const searchResult = useAppSelector((store) => store.searchData);
 	const { loading, error, data } = useAppSelector((store) => store.single);
-	const dispatch = useAppDispatch();
 
-	const [format, setFormat] = React.useState({} as Format);
-	// console.log(data);
-
-	//
 	useEffect(() => {
-		// videoRef.current?.autoplay = true;
-		// videoRef.current.muted = false;
-		setTimeout(() => {
-			videoRef.current!.play();
-		}, 1000);
+		setPlayerData({ ...playerData, active: false, muted: true });
 	}, []);
 
 	useEffect(() => {
@@ -65,20 +56,12 @@ const SingleVideo = (props: Props) => {
 	}, [id]);
 
 	useEffect(() => {
-		getSearchResult(dispatch, query || data.keywords[0]);
-	}, [query, data.keywords]);
-
-	useEffect(() => {
-		if (data?.formats?.length > 0)
+		if (data?.formats?.length > 0) {
 			setFormat(data.formats[data.formats.length - 1]);
+			localStorage.setItem("trackData", JSON.stringify(data));
+		}
 	}, [data]);
 
-	// if (data?.formats?.length < 1) {
-	// 	return <></>;
-	// }
-	useEffect(() => {
-		setPlayerData({ ...playerData, active: false, muted: true });
-	}, []);
 	if (loading) {
 		return <>Loading...</>;
 	}
@@ -89,8 +72,6 @@ const SingleVideo = (props: Props) => {
 
 	return (
 		<Stack width="100%" position="relative" top="0" gap={"2rem"}>
-			<SearchBox {...{ text, setText }} />
-
 			<Stack
 				width={"100%"}
 				maxHeight="max-content"
@@ -112,25 +93,37 @@ const SingleVideo = (props: Props) => {
 						lg: "70%",
 						xl: "70%",
 					}}>
-					<Box className="single_video_div">
+					<Box>
 						<video
 							playsInline
 							autoPlay
 							controls
 							onLoad={(e) => videoRef.current!.play()}
+							onProgress={(e) => {
+								setPlayerData({
+									...playerData,
+									current: videoRef.current?.currentTime,
+								});
+								localStorage.setItem(
+									"track",
+									JSON.stringify({ ...playerData, active: true }),
+								);
+							}}
 							preload="none"
-							onPlay={() =>
-								setPlayerData({ ...playerData, active: false, muted: true })
-							}
+							onPlay={() => console.log(videoRef.current?.currentTime)}
+							onPause={() => console.log(videoRef.current?.currentTime)}
 							// muted
 							// muted
 							ref={videoRef}
 							src={format.url}
 							poster={data.thumbnail[data.thumbnail?.length - 1].url}
-							className="single_video"></video>
+							style={{
+								width: "100%",
+								aspectRatio: "1280/720",
+								objectFit: "cover",
+							}}></video>
 					</Box>
 					<Stack
-						className="options"
 						direction={{
 							xs: "column",
 							sm: "column",
@@ -139,6 +132,7 @@ const SingleVideo = (props: Props) => {
 							xl: "row",
 						}}
 						gap="2rem"
+						padding={"1rem"}
 						justifyContent={"space-between"}
 						alignItems="center">
 						{/* change reselution */}
@@ -159,7 +153,7 @@ const SingleVideo = (props: Props) => {
 								<p>{data.title}</p>
 								<p>{data.channelTitle}</p>
 							</Stack>
-							<FaRegHeart size="30" style={{}} />
+							<FaRegHeart size="40" style={{}} />
 						</Stack>
 
 						<Stack
@@ -219,7 +213,7 @@ const SingleVideo = (props: Props) => {
 						<VideoGrid
 							fixedColumns="1fr 1fr"
 							audio={false}
-							title={text ? "Search Result" : "Recent Search"}
+							title="Search Result"
 							items={searchResult.list}
 						/>
 					)}
@@ -229,4 +223,4 @@ const SingleVideo = (props: Props) => {
 	);
 };
 
-export default SingleVideo;
+export default Preview;

@@ -8,17 +8,21 @@ export const PlayerDataContext = React.createContext(
 		setPlayerData: React.Dispatch<React.SetStateAction<PlayerDataType>>;
 	},
 );
-
+const previousState = JSON.parse(
+	localStorage.getItem("track") as string,
+) as PlayerDataType;
+const initailState: PlayerDataType = {
+	active: false,
+	paused: true,
+	muted: true,
+	current: 0,
+};
 const PlayerDataProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,
 }) => {
-	const single = useAppSelector((store) => store.single);
-	const initailState: PlayerDataType = {
-		active: single?.data?.formats?.length ? true : false,
-		paused: true,
-		muted: true,
-	};
-	const [playerData, setPlayerData] = React.useState(initailState);
+	const [playerData, setPlayerData] = React.useState(
+		previousState || initailState,
+	);
 	const value = { playerData, setPlayerData };
 
 	return (

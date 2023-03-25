@@ -41,14 +41,6 @@ function App() {
 		};
 	}, []);
 
-	useEffect(() => {
-		setPlayerData(
-			pathname.includes("single")
-				? { ...playerData, active: false, muted: true }
-				: { ...playerData, active: true },
-		);
-	}, [pathname]);
-
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />

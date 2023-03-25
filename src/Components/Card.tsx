@@ -9,11 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 type Props = {
 	data: SearchResultType;
-	video: boolean;
-	audio: boolean;
 };
 
-const Card = ({ data, video, audio }: Props) => {
+const Card = ({ data }: Props) => {
 	const theme = useTheme();
 	const navigate = useNavigate();
 	return (
@@ -41,17 +39,7 @@ const Card = ({ data, video, audio }: Props) => {
 					gap="3rem"
 					fontSize={"2rem"}
 					bgcolor={theme.palette.primary.contrastText}>
-					{video && audio ? (
-						<FaVideo onClick={() => navigate("/single_video/" + data.id)} />
-					) : video ? (
-						<FaPlay onClick={() => navigate("/single_video/" + data.id)} />
-					) : null}
-
-					{audio && video ? (
-						<FaMusic onClick={() => navigate("/single_audio/" + data.id)} />
-					) : audio ? (
-						<FaPlay onClick={() => navigate("/single_audio/" + data.id)} />
-					) : null}
+					<FaPlay onClick={() => navigate("/preview/" + data.id)} />
 				</Stack>
 			</Box>
 			<span

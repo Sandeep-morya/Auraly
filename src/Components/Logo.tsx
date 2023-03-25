@@ -1,5 +1,5 @@
 ﻿import { useTheme } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import React from "react";
 
 type Props = {};
@@ -7,9 +7,14 @@ type Props = {};
 const Logo = (props: Props) => {
 	const theme = useTheme();
 	const navigate = useNavigate();
+	const location = useLocation();
 	return (
 		<div
-			onClick={() => navigate("/")}
+			onClick={() =>
+				navigate("/", {
+					state: location.pathname,
+				})
+			}
 			style={{ width: "10rem", transform: "scale(0.4) translateX(-60%)" }}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
