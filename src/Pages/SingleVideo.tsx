@@ -33,6 +33,7 @@ type Props = {};
 
 const SingleVideo = (props: Props) => {
 	const theme = useTheme();
+	const { playerData, setPlayerData } = useContext(PlayerDataContext);
 
 	const [text, setText] = React.useState("");
 	const query = useDebounce(text);
@@ -75,6 +76,9 @@ const SingleVideo = (props: Props) => {
 	// if (data?.formats?.length < 1) {
 	// 	return <></>;
 	// }
+	useEffect(() => {
+		setPlayerData({ ...playerData, active: false, muted: true });
+	}, []);
 	if (loading) {
 		return <>Loading...</>;
 	}
@@ -82,12 +86,6 @@ const SingleVideo = (props: Props) => {
 	if (error) {
 		return <Navigate to={"/error"} />;
 	}
-
-	// useEffect(() => {
-	// 	return () => {
-	// 		setPlayerData({ ...playerData, active: true });
-	// 	};
-	// }, []);
 
 	return (
 		<Stack width="100%" position="relative" top="0" gap={"2rem"}>
@@ -121,6 +119,9 @@ const SingleVideo = (props: Props) => {
 							controls
 							onLoad={(e) => videoRef.current!.play()}
 							preload="none"
+							onPlay={() =>
+								setPlayerData({ ...playerData, active: false, muted: true })
+							}
 							// muted
 							// muted
 							ref={videoRef}
@@ -155,7 +156,7 @@ const SingleVideo = (props: Props) => {
 								xl: "50%",
 							}}>
 							<Stack alignSelf={"flex-start"}>
-								<p>{data.title.slice(0, 70)}...</p>
+								<p>{data.title}</p>
 								<p>{data.channelTitle}</p>
 							</Stack>
 							<FaRegHeart size="30" style={{}} />

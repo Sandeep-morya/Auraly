@@ -95,7 +95,7 @@ const AudioPlayer = () => {
 							style={{
 								color: theme.palette.text.primary === "#fff" ? "#000" : "#fff",
 							}}>
-							{data.title}
+							{data.title.slice(0, 70) + "..."}
 						</p>
 						<p
 							style={{

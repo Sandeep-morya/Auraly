@@ -45,7 +45,7 @@ function App() {
 		setPlayerData(
 			pathname.includes("single")
 				? { ...playerData, active: false, muted: true }
-				: { ...playerData, muted: false, active: true },
+				: { ...playerData, active: true },
 		);
 	}, [pathname]);
 
