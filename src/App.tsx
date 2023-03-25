@@ -1,4 +1,3 @@
-import "./App.css";
 import Boot from "./Components/Boot";
 import React, { useState, useEffect, useContext } from "react";
 import { Stack } from "@mui/system";
@@ -15,7 +14,7 @@ import { useLocation } from "react-router-dom";
 import { PlayerDataContext } from "./Provider/PlayerContextProvider";
 
 function App() {
-	const [hidden, setHidden] = useState(true);
+	const [hidden, setHidden] = useState(false);
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 	const { playerData, setPlayerData } = useContext(PlayerDataContext);
 
