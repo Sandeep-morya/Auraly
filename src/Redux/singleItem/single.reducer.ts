@@ -11,6 +11,7 @@ const initalState = {
 	error: false,
 	data: result as SingleItem,
 };
+export type SingleItemState = typeof initalState;
 
 function reducer(
 	state = initalState,

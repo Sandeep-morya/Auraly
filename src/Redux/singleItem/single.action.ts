@@ -13,7 +13,7 @@ export async function getSingle(dispatch: any, id: string) {
 		url: "https://ytstream-download-youtube-videos.p.rapidapi.com/dl",
 		params: { id },
 		headers: {
-			"X-RapidAPI-Key": "999fb0dc6fmsh365f52816a32b88p12f229jsn4325929376fb",
+			"X-RapidAPI-Key": "25a08ff1ecmshb0e013342682ff5p1df7bbjsn9bf370586ba4",
 			"X-RapidAPI-Host": "ytstream-download-youtube-videos.p.rapidapi.com",
 		},
 	};

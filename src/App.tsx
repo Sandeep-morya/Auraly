@@ -1,6 +1,6 @@
 import "./App.css";
 import Boot from "./Components/Boot";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Stack } from "@mui/system";
 import Navbar from "./Components/Navbar";
 import {
@@ -10,10 +10,16 @@ import {
 	useMediaQuery,
 } from "@mui/material";
 import AllRoutes from "./Routes";
+import AudioPlayer from "./Components/AudioPlayer";
+import { useLocation } from "react-router-dom";
+import { PlayerDataContext } from "./Provider/PlayerContextProvider";
 
 function App() {
 	const [hidden, setHidden] = useState(true);
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+	const { playerData, setPlayerData } = useContext(PlayerDataContext);
+
+	const { pathname } = useLocation();
 
 	const theme = React.useMemo(
 		() =>
@@ -35,6 +41,14 @@ function App() {
 		};
 	}, []);
 
+	useEffect(() => {
+		setPlayerData(
+			pathname.includes("single")
+				? { ...playerData, active: false, muted: true }
+				: { ...playerData, muted: false, active: true },
+		);
+	}, [pathname]);
+
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
@@ -51,6 +65,8 @@ function App() {
 					}}>
 					<Navbar />
 					<AllRoutes />
+
+					<AudioPlayer />
 				</Stack>
 			)}
 		</ThemeProvider>

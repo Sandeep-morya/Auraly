@@ -7,13 +7,13 @@
 	useTheme,
 } from "@mui/material";
 import Button from "../Components/BubbleButton";
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import SearchBox from "../Components/SearchBox";
 import { Format } from "../types";
 import { result } from "./data";
 import "../Styles/single_video.css";
 import SelectBox from "../Components/SelectBox";
-import { FaDownload } from "react-icons/fa";
+import { FaDownload, FaHeart, FaRegHeart } from "react-icons/fa";
 import Description from "../Components/Description";
 import VideoGrid from "../Components/VideoGrid";
 import useDebounce from "../Hooks/useDebounce";
@@ -26,6 +26,8 @@ import download from "downloadjs";
 // import download from "downloadjs";
 //ts ignore
 import { Navigate } from "react-router-dom";
+import AudioPlayer from "../Components/AudioPlayer";
+import { PlayerDataContext } from "../Provider/PlayerContextProvider";
 
 type Props = {};
 
@@ -81,16 +83,23 @@ const SingleVideo = (props: Props) => {
 		return <Navigate to={"/error"} />;
 	}
 
+	// useEffect(() => {
+	// 	return () => {
+	// 		setPlayerData({ ...playerData, active: true });
+	// 	};
+	// }, []);
+
 	return (
 		<Stack width="100%" position="relative" top="0" gap={"2rem"}>
 			<SearchBox {...{ text, setText }} />
+
 			<Stack
 				width={"100%"}
 				maxHeight="max-content"
 				direction={{
 					xs: "column",
 					sm: "column",
-					md: "column",
+					md: "row",
 					lg: "row",
 					xl: "row",
 				}}
@@ -124,7 +133,7 @@ const SingleVideo = (props: Props) => {
 						direction={{
 							xs: "column",
 							sm: "column",
-							md: "column",
+							md: "row",
 							lg: "row",
 							xl: "row",
 						}}
@@ -134,6 +143,10 @@ const SingleVideo = (props: Props) => {
 						{/* change reselution */}
 						{/*  */}
 						<Stack
+							direction="row"
+							justifyContent={"flex-start"}
+							alignItems="center"
+							gap="2rem"
 							width={{
 								xs: "100%",
 								sm: "100%",
@@ -141,8 +154,11 @@ const SingleVideo = (props: Props) => {
 								lg: "50%",
 								xl: "50%",
 							}}>
-							<p>{data.title}</p>
-							<p>{data.channelTitle}</p>
+							<Stack alignSelf={"flex-start"}>
+								<p>{data.title.slice(0, 70)}...</p>
+								<p>{data.channelTitle}</p>
+							</Stack>
+							<FaRegHeart size="30" style={{}} />
 						</Stack>
 
 						<Stack
@@ -165,7 +181,6 @@ const SingleVideo = (props: Props) => {
 							/>
 
 							<Button
-								leftIcon={<FaDownload />}
 								size="lg"
 								onClick={() => console.log(format.url)}
 								style={{

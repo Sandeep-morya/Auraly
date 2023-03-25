@@ -112,3 +112,10 @@ export interface SingleThumbnail {
 	width: number;
 	height: number;
 }
+
+/* Mini media player */
+export interface PlayerDataType {
+	paused?: boolean;
+	active?: boolean;
+	muted?: boolean;
+}

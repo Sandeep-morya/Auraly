@@ -1,0 +1,10 @@
+﻿.thumbnail_div {
+	height: 60vh;
+	width: 60%;
+	border: 1px solid red;
+}
+.playlist_div {
+	height: 90vh;
+	width: 40%;
+	border: 1px solid white;
+}

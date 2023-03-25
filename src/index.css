@@ -5,9 +5,18 @@
 	box-sizing: border-box;
 	font-family: "Quicksand", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
 		sans-serif !important;
-	transition: all 0.2s;
-	text-shadow: 0 0 2px rgba(0, 0, 0, 0.404);
+	transition: all 0.1s;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.404);
 }
 body {
 	overflow-x: hidden;
+}
+
+@keyframes animateRound {
+	0% {
+		transform: rotateZ(0);
+	}
+	100% {
+		transform: rotateZ(360deg);
+	}
 }

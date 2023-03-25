@@ -20,11 +20,11 @@ const Card = ({ data, video, audio }: Props) => {
 		<Stack gap="0.5rem" sx={{ "&:hover": { scale: "1.2" } }}>
 			<Box
 				className="card_div"
-				sx={{ objectFit: "cover" }}
+				sx={{ aspectRatio: "1280/720", objectFit: "cover" }}
 				position={"relative"}
 				overflow="hidden">
 				<img
-					style={{ width: "100%", aspectRatio: "1280/720", objectFit: "cover" }}
+					style={{ width: "100%", height: "100%", objectFit: "cover" }}
 					src={data.thumbnail.url}
 					alt={data.title}
 				/>
