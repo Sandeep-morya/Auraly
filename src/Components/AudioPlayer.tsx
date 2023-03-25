@@ -28,7 +28,7 @@ const AudioPlayer = () => {
 					sm: active ? "7rem" : "-10rem",
 					md: active ? "2rem" : "-10rem",
 				} */,
-				boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+				boxShadow: "rgb(38, 57, 77) 0px 20px 30px -10px",
 			}}>
 			<Stack
 				sx={{
