@@ -23,7 +23,12 @@ const AudioPlayer = () => {
 					xl: "calc(100vw - 30rem)",
 				},
 				position: "fixed",
-				bottom: active ? "2rem" : "-10rem",
+				bottom: active ? "2rem" : "-10rem" /*  {
+					xs: active ? "7rem" : "-10rem",
+					sm: active ? "7rem" : "-10rem",
+					md: active ? "2rem" : "-10rem",
+				} */,
+				boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
 			}}>
 			<Stack
 				sx={{
@@ -34,8 +39,6 @@ const AudioPlayer = () => {
 						sx: "0.3rem",
 						sm: "0.5rem",
 						md: "0.5rem",
-						lg: "10rem",
-						xl: "10rem",
 					},
 					padding: "0.25rem 1rem",
 					backdropFilter: "blur(5px) brightness(500%)",
@@ -105,12 +108,14 @@ const AudioPlayer = () => {
 
 				<audio
 					onPause={() => setPlayerData({ ...playerData, paused: true })}
-					onPlay={() => setPlayerData({ ...playerData, paused: false })}
+					onPlay={() =>
+						setPlayerData({ ...playerData, muted: false, paused: false })
+					}
 					src={data.formats[0].url}
 					style={{ width: "100%" }}
 					controls
 					muted={muted}
-					autoPlay={!paused}>
+					autoPlay>
 					{/* {data.adaptiveFormats.map((format) => (
 					<source key={format.itag} src={format.url} type="audio/*" />
 				))} */}

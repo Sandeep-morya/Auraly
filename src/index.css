@@ -20,3 +20,8 @@ body {
 		transform: rotateZ(360deg);
 	}
 }
+
+audio {
+	border-bottom: 1px solid rgb(3, 3, 3);
+	border-radius: 0.3rem;
+}
