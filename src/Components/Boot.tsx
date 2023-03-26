@@ -13,7 +13,7 @@ const Boot = () => {
 			justifyContent="center"
 			bgcolor={"#121212"}>
 			<img className="boot" src="/auraly_logo.png" alt="auraly_logo" />
-			<Billboard />
+			{/* <Billboard /> */}
 		</Stack>
 	);
 };

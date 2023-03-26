@@ -7,7 +7,6 @@ import { useAppDispatch, useAppSelector } from "../Hooks/Redux_hooks";
 import getSearchResult from "../Redux/searchData/search_data.actions";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
-import { gapi } from "gapi-script";
 type Props = {};
 
 const Navbar = (props: Props) => {

@@ -1,5 +1,4 @@
 ﻿import React from "react";
-import GoogleLogin from "react-google-login";
 
 type Props = {};
 const client_id = import.meta.env.VITE_GOOGLE_ID;
@@ -14,18 +13,7 @@ const LoginButton = (props: Props) => {
 	function handleFailure(e: any) {
 		console.log("failure", e);
 	}
-	return (
-		<div id="signInButton">
-			<GoogleLogin
-				clientId={client_id}
-				buttonText="Login"
-				onSuccess={handleLogin}
-				onFailure={handleFailure}
-				cookiePolicy="single_host_origin"
-				isSignedIn={true}
-			/>
-		</div>
-	);
+	return <div id="signInButton">logiin</div>;
 };
 
 export default LoginButton;

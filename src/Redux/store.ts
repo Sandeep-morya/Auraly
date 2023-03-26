@@ -1,13 +1,11 @@
 ﻿import { legacy_createStore, combineReducers } from "redux";
 import authReducer from "./auth/auth.reducer";
 import searchDataReducer from "./searchData/search_data.reducer";
-import tvReducer from "./trendingVideos/tv.reducer";
 import singleReducer from "./singleItem/single.reducer";
 
 const rootReducer = combineReducers({
 	auth: authReducer,
 	searchData: searchDataReducer,
-	trendingVideos: tvReducer,
 	single: singleReducer,
 });
 

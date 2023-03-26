@@ -6,7 +6,7 @@ export const result: SingleItem = {
 	title: "Heropanti: Tere Binaa Full Audio Song | Tiger Shroff | Kriti Sanon",
 	lengthSeconds: "203",
 	keywords: [
-		"Tiger Shroff",
+		"movies",
 		"Kriti Sanon",
 		"Heropanti",
 		"Sajid-Wajid",

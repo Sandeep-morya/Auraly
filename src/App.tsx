@@ -15,8 +15,6 @@ import { useLocation } from "react-router-dom";
 import { PlayerDataContext } from "./Provider/PlayerContextProvider";
 import Billboard from "./Components/Billboard";
 import { useAppSelector } from "./Hooks/Redux_hooks";
-import { gapi } from "gapi-script";
-
 const client_id = import.meta.env.VITE_GOOGLE_ID;
 
 function App() {
@@ -25,11 +23,8 @@ function App() {
 	// const { playerData, setPlayerData } = useContext(PlayerDataContext);
 
 	// const { pathname } = useLocation();
-	const { loading: loading_1 } = useAppSelector(
-		(store) => store.trendingVideos,
-	);
-	const { loading: loading_2 } = useAppSelector((store) => store.searchData);
-	console.log("token", gapi?.auth?.getToken());
+
+	const { loading } = useAppSelector((store) => store.searchData);
 
 	const theme = React.useMemo(
 		() =>
@@ -42,20 +37,10 @@ function App() {
 	);
 
 	useEffect(() => {
-		if (!loading_1 && !loading_2) {
+		if (!loading) {
 			setHidden(true);
 		}
-	}, [loading_1, loading_2]);
-
-	useEffect(() => {
-		function start() {
-			gapi.client.init({
-				client_id,
-				scope: "",
-			});
-		}
-		gapi.load("client:auth2", start);
-	}, []);
+	}, [loading]);
 
 	return (
 		<ThemeProvider theme={theme}>
