@@ -7,6 +7,7 @@ import SearchBox from "./SearchBox";
 import useDebounce from "../Hooks/useDebounce";
 import { useAppDispatch, useAppSelector } from "../Hooks/Redux_hooks";
 import getSearchResult from "../Redux/searchData/search_data.actions";
+import Billboard from "./Billboard";
 type Props = {};
 
 const Navbar = (props: Props) => {
@@ -23,8 +24,14 @@ const Navbar = (props: Props) => {
 		<Stack
 			position="sticky"
 			top="0"
-			sx={{ backdropFilter: "blur(5px)", borderRadius: "1rem" }}
 			zIndex="7"
+			sx={{
+				backdropFilter: "blur(100px)",
+				borderRadius: "0.5rem",
+
+				boxShadow:
+					"rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px",
+			}}
 			direction={{
 				xs: "column",
 				sm: "column",
@@ -33,7 +40,7 @@ const Navbar = (props: Props) => {
 				xl: "row",
 			}}
 			width="100%"
-			p="1.5rem 0"
+			padding={"1rem 0"}
 			alignItems="center"
 			justifyContent={"space-between"}>
 			<Stack
@@ -65,6 +72,7 @@ const Navbar = (props: Props) => {
 				}}
 				justifyContent="space-between"
 				direction={"row"}
+				padding="0.5rem 1rem"
 				fontSize={{
 					xs: "1rem",
 					sm: "1rem",

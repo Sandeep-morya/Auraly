@@ -12,13 +12,19 @@ import AllRoutes from "./Routes";
 import AudioPlayer from "./Components/AudioPlayer";
 import { useLocation } from "react-router-dom";
 import { PlayerDataContext } from "./Provider/PlayerContextProvider";
+import Billboard from "./Components/Billboard";
+import { useAppSelector } from "./Hooks/Redux_hooks";
 
 function App() {
 	const [hidden, setHidden] = useState(false);
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-	const { playerData, setPlayerData } = useContext(PlayerDataContext);
+	// const { playerData, setPlayerData } = useContext(PlayerDataContext);
 
-	const { pathname } = useLocation();
+	// const { pathname } = useLocation();
+	const { loading: loading_1 } = useAppSelector(
+		(store) => store.trendingVideos,
+	);
+	const { loading: loading_2 } = useAppSelector((store) => store.searchData);
 
 	const theme = React.useMemo(
 		() =>
@@ -31,14 +37,10 @@ function App() {
 	);
 
 	useEffect(() => {
-		const id = setTimeout(() => {
+		if (!loading_1 && !loading_2) {
 			setHidden(true);
-		}, 1500);
-
-		return () => {
-			clearInterval(id);
-		};
-	}, []);
+		}
+	}, [loading_1, loading_2]);
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -55,6 +57,7 @@ function App() {
 						xl: "0 15rem",
 					}}>
 					<Navbar />
+
 					<AllRoutes />
 
 					<AudioPlayer />

@@ -12,7 +12,6 @@ import VideoGrid from "../Components/VideoGrid";
 import { useAppDispatch, useAppSelector } from "../Hooks/Redux_hooks";
 import useDebounce from "../Hooks/useDebounce";
 import getSearchResult from "../Redux/searchData/search_data.actions";
-import { getTrendingMusic } from "../Redux/trendingMusic/tm.action";
 import { getTrendingVideos } from "../Redux/trendingVideos/tv.action";
 
 type Props = {};
@@ -20,17 +19,12 @@ type Props = {};
 const Home = (props: Props) => {
 	const searchResult = useAppSelector((store) => store.searchData);
 	const trendingVideos = useAppSelector((store) => store.trendingVideos);
-	const trendingMusic = useAppSelector((store) => store.trendingMusic);
 	const dispatch = useAppDispatch();
 
 	// console.log(list);
 
 	React.useEffect(() => {
 		getTrendingVideos(dispatch, trendingVideos.list);
-	}, []);
-
-	React.useEffect(() => {
-		getTrendingMusic(dispatch, trendingMusic.list);
 	}, []);
 
 	return (
@@ -42,11 +36,6 @@ const Home = (props: Props) => {
 				audio={false}
 				title="Trending Videos"
 				items={trendingVideos.list}
-			/>
-			<VideoGrid
-				video={false}
-				title="Latest Music"
-				items={trendingMusic.list}
 			/>
 		</Stack>
 	);

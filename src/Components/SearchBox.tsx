@@ -16,6 +16,7 @@ const SearchBox = ({ text, setText }: Props) => {
 			value={text}
 			sx={{
 				width: "100%",
+
 				"& .MuiOutlinedInput-root": {
 					"& fieldset": {
 						// borderColor: ,

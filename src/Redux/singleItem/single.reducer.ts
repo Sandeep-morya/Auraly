@@ -19,7 +19,7 @@ export type SingleItemState = typeof initalState;
 
 function reducer(
 	state = initalState,
-	action: { type: string; payload: SingleItem },
+	action: { type: string; payload?: SingleItem },
 ): typeof initalState {
 	switch (action.type) {
 		case SINGLE_LOADING:
@@ -40,7 +40,7 @@ function reducer(
 			return {
 				loading: false,
 				error: false,
-				data: action.payload,
+				data: action.payload!,
 			};
 
 		default:

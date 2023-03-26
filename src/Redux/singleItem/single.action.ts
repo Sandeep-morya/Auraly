@@ -1,11 +1,12 @@
 ﻿import axios from "axios";
+import { AppDispatch } from "../store";
 import {
 	SINGLE_LOADING,
 	SINGLE_ERROR,
 	SINGLE_SUCCESSFULL,
 } from "./single.type";
 
-export async function getSingle(dispatch: any, id: string) {
+export async function getSingle(dispatch: AppDispatch, id: string) {
 	dispatch({ type: SINGLE_LOADING });
 
 	const options = {
