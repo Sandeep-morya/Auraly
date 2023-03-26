@@ -14,7 +14,7 @@ export async function getSingle(dispatch: AppDispatch, id: string) {
 		url: "https://ytstream-download-youtube-videos.p.rapidapi.com/dl",
 		params: { id },
 		headers: {
-			"X-RapidAPI-Key": "5bc696b56fmshc2a1eb3a8f8a0cap14e68ajsn584696158ccb",
+			"X-RapidAPI-Key": "25a08ff1ecmshb0e013342682ff5p1df7bbjsn9bf370586ba4",
 			"X-RapidAPI-Host": "ytstream-download-youtube-videos.p.rapidapi.com",
 		},
 	};

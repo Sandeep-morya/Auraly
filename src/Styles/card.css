@@ -1,5 +1,5 @@
 ﻿.card_div:hover .card_options {
-	opacity: 1;
+	opacity: 0.5;
 }
 .card_options {
 	opacity: 0;

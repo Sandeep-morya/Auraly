@@ -1,11 +1,11 @@
 ﻿import { Box, Stack, useTheme } from "@mui/material";
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../Hooks/Redux_hooks";
 // import { result as data } from "../Pages/data";
 import { PlayerDataContext } from "../Provider/PlayerContextProvider";
 import { SingleItemState } from "../Redux/singleItem/single.reducer";
-import { SingleItem } from "../types";
+import { PlayerDataType, SingleItem } from "../types";
 
 const AudioPlayer = () => {
 	const { loading, error, data } = useAppSelector((store) => store.single);
@@ -13,12 +13,16 @@ const AudioPlayer = () => {
 	const audioRef = React.useRef<HTMLAudioElement>(null);
 	const { active, muted, paused, current } = playerData;
 	const theme = useTheme();
+	const navigate = useNavigate();
 
 	const location = useLocation();
 
 	console.log(location, active);
 
 	React.useEffect(() => {
+		const { current } = JSON.parse(
+			localStorage.getItem("track") as string,
+		) as PlayerDataType;
 		setPlayerData(
 			location.pathname.includes("preview")
 				? {
@@ -31,15 +35,24 @@ const AudioPlayer = () => {
 						...playerData,
 						active: location.state ? true : active,
 						muted: false,
+						current,
 				  },
 		);
 	}, [location]);
+
+	console.log("audio Player comrended");
+
 	if (!active) {
 		return <></>;
 	}
 
 	return (
 		<Box
+			onClick={() => {
+				navigate("/preview/" + data.title, {
+					state: "audio",
+				});
+			}}
 			sx={{
 				width: {
 					xs: "calc(100vw - 0.2rem)",
@@ -125,7 +138,12 @@ const AudioPlayer = () => {
 							alt=""
 						/>
 					</Box>
-					<Stack sx={{ zIndex: "2", fontWeight: "600" }}>
+					<Stack
+						sx={{
+							zIndex: "2",
+							fontWeight: "600",
+							color: "white",
+						}}>
 						<p>{data.title.slice(0, 30) + "..."}</p>
 						<p>{data.channelTitle}</p>
 					</Stack>
@@ -136,6 +154,20 @@ const AudioPlayer = () => {
 					onPlay={() =>
 						setPlayerData({ ...playerData, muted: false, paused: false })
 					}
+					onTimeUpdate={(e) => {
+						// setPlayerData({
+						// 	...playerData,
+						// 	current: videoRef.current?.currentTime,
+						// });
+						localStorage.setItem(
+							"track",
+							JSON.stringify({
+								...playerData,
+								active: true,
+								current: audioRef.current?.currentTime,
+							}),
+						);
+					}}
 					ref={audioRef}
 					src={`${data.formats[data.formats.length - 1].url}#t=${
 						playerData.current

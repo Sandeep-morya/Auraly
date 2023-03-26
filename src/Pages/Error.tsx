@@ -1,8 +1,6 @@
 ﻿import { Divider, Stack, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import React from "react";
-import Navbar from "../Components/Navbar";
-import "../Styles/error.css";
 
 type Props = {
 	code?: number;

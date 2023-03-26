@@ -1,9 +1,6 @@
-﻿import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { Stack } from "@mui/system";
+﻿import { Paper, useTheme } from "@mui/material";
 import React, { SetStateAction } from "react";
 import { Format } from "../types";
-
-import "../Styles/select_box.css";
 
 type Props = {
 	formats: Format[];
@@ -13,6 +10,7 @@ type Props = {
 };
 
 const SelectBox = ({ label, formats, format, setFormat }: Props) => {
+	const theme = useTheme();
 	function findFormatWithUrl(url: string): Format {
 		for (let item of formats) {
 			if (item.url === url) {
@@ -22,8 +20,14 @@ const SelectBox = ({ label, formats, format, setFormat }: Props) => {
 		return format;
 	}
 	return (
-		<Box className="box">
+		<Paper className="box">
 			<select
+				style={{
+					backgroundColor: theme.palette.text.primary,
+					color: theme.palette.primary.contrastText,
+					padding: "1rem",
+					borderRadius: "0.3rem",
+				}}
 				value={format.url}
 				onChange={(e) => setFormat(findFormatWithUrl(e.target.value))}>
 				{formats.map((item, i) => (
@@ -36,7 +40,7 @@ const SelectBox = ({ label, formats, format, setFormat }: Props) => {
 					</option>
 				))}
 			</select>
-		</Box>
+		</Paper>
 	);
 };
 

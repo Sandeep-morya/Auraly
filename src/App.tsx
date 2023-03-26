@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Stack } from "@mui/system";
 import Navbar from "./Components/Navbar";
 import {
+	Box,
 	createTheme,
 	CssBaseline,
 	ThemeProvider,
@@ -49,6 +50,7 @@ function App() {
 			{hidden && (
 				<Stack
 					width="100%"
+					gap="2rem"
 					padding={{
 						xs: "0 0.1rem",
 						sm: "0 0.5rem",

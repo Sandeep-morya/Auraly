@@ -14,6 +14,11 @@ type Props = {
 const Card = ({ data }: Props) => {
 	const theme = useTheme();
 	const navigate = useNavigate();
+
+	function handleClick() {
+		localStorage.removeItem("trackData");
+		navigate("/preview/" + data.id);
+	}
 	return (
 		<Stack gap="0.5rem" sx={{ "&:hover": { scale: "1.2" } }}>
 			<Box
@@ -39,7 +44,7 @@ const Card = ({ data }: Props) => {
 					gap="3rem"
 					fontSize={"2rem"}
 					bgcolor={theme.palette.primary.contrastText}>
-					<FaPlay onClick={() => navigate("/preview/" + data.id)} />
+					<FaPlay onClick={handleClick} />
 				</Stack>
 			</Box>
 			<span

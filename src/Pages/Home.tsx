@@ -4,7 +4,6 @@ import { MdOutlineQueryStats } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import Billboard from "../Components/Billboard";
 import Card from "../Components/Card";
-import Center from "../Components/Center";
 import Heading from "../Components/Heading";
 import Navbar from "../Components/Navbar";
 import SearchBox from "../Components/SearchBox";
@@ -21,7 +20,7 @@ const Home = (props: Props) => {
 	const trendingVideos = useAppSelector((store) => store.trendingVideos);
 	const dispatch = useAppDispatch();
 
-	// console.log(list);
+	console.log("home comrended");
 
 	React.useEffect(() => {
 		getTrendingVideos(dispatch, trendingVideos.list);

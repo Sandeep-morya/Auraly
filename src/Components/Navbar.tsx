@@ -1,13 +1,10 @@
-﻿import { Avatar, Box, Stack, TextField, Typography } from "@mui/material";
+﻿import { Avatar, Stack } from "@mui/material";
 import React from "react";
 import Logo from "./Logo";
-import { MdSearch } from "react-icons/md";
-import Button from "./Button";
 import SearchBox from "./SearchBox";
 import useDebounce from "../Hooks/useDebounce";
 import { useAppDispatch, useAppSelector } from "../Hooks/Redux_hooks";
 import getSearchResult from "../Redux/searchData/search_data.actions";
-import Billboard from "./Billboard";
 type Props = {};
 
 const Navbar = (props: Props) => {
@@ -19,18 +16,18 @@ const Navbar = (props: Props) => {
 	React.useEffect(() => {
 		getSearchResult(dispatch, query || data.keywords[0]);
 	}, [query, data.keywords]);
+	console.log("navbar comrended");
 
 	return (
 		<Stack
 			position="sticky"
 			top="0"
+			className="navbar"
 			zIndex="7"
 			sx={{
 				backdropFilter: "blur(100px)",
-				borderRadius: "0.5rem",
-
-				boxShadow:
-					"rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px",
+				borderRadius: "0 0 1rem 1rem",
+				boxShadow: "rgba(0, 0, 0, 0.45) 0px 25px 20px -20px",
 			}}
 			direction={{
 				xs: "column",

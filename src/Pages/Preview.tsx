@@ -1,32 +1,15 @@
-﻿import {
-	Box,
-	Chip,
-	FormControl,
-	InputLabel,
-	Stack,
-	useTheme,
-} from "@mui/material";
+﻿import { Box, Stack, useTheme } from "@mui/material";
 import Button from "../Components/BubbleButton";
-import React, { useEffect, useContext } from "react";
-import SearchBox from "../Components/SearchBox";
-import { Format } from "../types";
-import { result } from "./data";
-import "../Styles/preview.css";
+import React, { useEffect, useContext, useState } from "react";
+import { Format, PlayerDataType, SingleItem } from "../types";
 import SelectBox from "../Components/SelectBox";
-import { FaDownload, FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import Description from "../Components/Description";
 import VideoGrid from "../Components/VideoGrid";
-import useDebounce from "../Hooks/useDebounce";
-import getSearchResult from "../Redux/searchData/search_data.actions";
 import { useAppDispatch, useAppSelector } from "../Hooks/Redux_hooks";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { getSingle } from "../Redux/singleItem/single.action";
-import axios, { Axios } from "axios";
-import download from "downloadjs";
-// import download from "downloadjs";
-//ts ignore
 import { Navigate } from "react-router-dom";
-import AudioPlayer from "../Components/AudioPlayer";
 import { PlayerDataContext } from "../Provider/PlayerContextProvider";
 
 type Props = {};
@@ -34,7 +17,7 @@ type Props = {};
 const Preview = (props: Props) => {
 	const theme = useTheme();
 	const { id } = useParams();
-
+	const { state } = useLocation();
 	const videoRef = React.useRef<HTMLVideoElement>(null);
 	const [format, setFormat] = React.useState({} as Format);
 	const { playerData, setPlayerData } = useContext(PlayerDataContext);
@@ -42,25 +25,44 @@ const Preview = (props: Props) => {
 	const dispatch = useAppDispatch();
 	const searchResult = useAppSelector((store) => store.searchData);
 	const { loading, error, data } = useAppSelector((store) => store.single);
+	const [videoData, setVideoData] = useState(data);
+
+	console.log("playerData" + playerData.current);
 
 	useEffect(() => {
-		setPlayerData({ ...playerData, active: false, muted: true });
+		const { current } = JSON.parse(
+			localStorage.getItem("track") as string,
+		) as PlayerDataType;
+		setPlayerData({ ...playerData, active: false, muted: true, current });
 	}, []);
 
 	useEffect(() => {
+		const previousData = JSON.parse(
+			localStorage.getItem("trackData") as string,
+		) as SingleItem;
 		if (id === undefined) {
 			return;
+		} else if (previousData?.formats) {
+			setVideoData(previousData);
 		} else {
 			getSingle(dispatch, id);
 		}
 	}, [id]);
 
 	useEffect(() => {
-		if (data?.formats?.length > 0) {
-			setFormat(data.formats[data.formats.length - 1]);
-			localStorage.setItem("trackData", JSON.stringify(data));
+		if (!loading) {
+			setVideoData(data);
 		}
-	}, [data]);
+	}, [loading]);
+
+	useEffect(() => {
+		if (videoData?.formats?.length > 0) {
+			setFormat(videoData.formats[videoData.formats.length - 1]);
+			localStorage.setItem("trackData", JSON.stringify(videoData));
+		}
+	}, [videoData]);
+
+	console.log("preview rended");
 
 	if (loading) {
 		return <>Loading...</>;
@@ -99,14 +101,19 @@ const Preview = (props: Props) => {
 							autoPlay
 							controls
 							onLoad={(e) => videoRef.current!.play()}
-							onProgress={(e) => {
-								setPlayerData({
-									...playerData,
-									current: videoRef.current?.currentTime,
-								});
+							onProgressCapture={(e) => console.log("rederd")}
+							onTimeUpdate={(e) => {
+								// setPlayerData({
+								// 	...playerData,
+								// 	current: videoRef.current?.currentTime,
+								// });
 								localStorage.setItem(
 									"track",
-									JSON.stringify({ ...playerData, active: true }),
+									JSON.stringify({
+										...playerData,
+										active: true,
+										current: videoRef.current?.currentTime,
+									}),
 								);
 							}}
 							preload="none"
@@ -115,8 +122,12 @@ const Preview = (props: Props) => {
 							// muted
 							// muted
 							ref={videoRef}
-							src={format.url}
-							poster={data.thumbnail[data.thumbnail?.length - 1].url}
+							src={
+								state === "audio"
+									? format.url + `#t=${playerData.current}`
+									: format.url
+							}
+							poster={videoData.thumbnail[videoData.thumbnail?.length - 1].url}
 							style={{
 								width: "100%",
 								aspectRatio: "1280/720",
@@ -150,8 +161,8 @@ const Preview = (props: Props) => {
 								xl: "50%",
 							}}>
 							<Stack alignSelf={"flex-start"}>
-								<p>{data.title}</p>
-								<p>{data.channelTitle}</p>
+								<p>{videoData.title}</p>
+								<p>{videoData.channelTitle}</p>
 							</Stack>
 							<FaRegHeart size="40" style={{}} />
 						</Stack>
@@ -172,7 +183,7 @@ const Preview = (props: Props) => {
 								format={format}
 								setFormat={setFormat}
 								label="Formats"
-								formats={data.formats}
+								formats={videoData.formats}
 							/>
 
 							<Button
@@ -188,8 +199,8 @@ const Preview = (props: Props) => {
 						</Stack>
 					</Stack>
 					<Description
-						description={data.description}
-						keywords={data.keywords}
+						description={videoData.description}
+						keywords={videoData.keywords}
 					/>
 				</Stack>
 
