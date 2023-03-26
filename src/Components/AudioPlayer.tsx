@@ -20,7 +20,7 @@ const AudioPlayer = () => {
 	console.log(location, active);
 
 	React.useEffect(() => {
-		const { current } = JSON.parse(
+		const track = JSON.parse(
 			localStorage.getItem("track") as string,
 		) as PlayerDataType;
 		setPlayerData(
@@ -35,7 +35,7 @@ const AudioPlayer = () => {
 						...playerData,
 						active: location.state ? true : active,
 						muted: false,
-						current,
+						current: track?.current || 0,
 				  },
 		);
 	}, [location]);

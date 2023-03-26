@@ -30,11 +30,16 @@ const Preview = (props: Props) => {
 	console.log("playerData" + playerData.current);
 
 	useEffect(() => {
-		const { current } = JSON.parse(
+		const track = JSON.parse(
 			localStorage.getItem("track") as string,
 		) as PlayerDataType;
-		setPlayerData({ ...playerData, active: false, muted: true, current });
-	}, []);
+		setPlayerData({
+			...playerData,
+			active: false,
+			muted: true,
+			current: track?.current || 0,
+		});
+	}, [format]);
 
 	useEffect(() => {
 		const previousData = JSON.parse(
@@ -101,7 +106,6 @@ const Preview = (props: Props) => {
 							autoPlay
 							controls
 							onLoad={(e) => videoRef.current!.play()}
-							onProgressCapture={(e) => console.log("rederd")}
 							onTimeUpdate={(e) => {
 								// setPlayerData({
 								// 	...playerData,
@@ -117,8 +121,6 @@ const Preview = (props: Props) => {
 								);
 							}}
 							preload="none"
-							onPlay={() => console.log(videoRef.current?.currentTime)}
-							onPause={() => console.log(videoRef.current?.currentTime)}
 							// muted
 							// muted
 							ref={videoRef}
