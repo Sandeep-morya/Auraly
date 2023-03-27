@@ -30,6 +30,7 @@ const Preview = (props: Props) => {
 	console.log("playerData" + playerData.current);
 
 	useEffect(() => {
+		console.log("fomrat renderd");
 		const track = JSON.parse(
 			localStorage.getItem("track") as string,
 		) as PlayerDataType;
@@ -76,6 +77,9 @@ const Preview = (props: Props) => {
 	if (error) {
 		return <Navigate to={"/error"} />;
 	}
+	if (playerData.active) {
+		return <>Loading...</>;
+	}
 
 	return (
 		<Stack width="100%" position="relative" top="0" gap={"2rem"}>
@@ -105,7 +109,9 @@ const Preview = (props: Props) => {
 							playsInline
 							autoPlay
 							controls
-							onLoad={(e) => videoRef.current!.play()}
+							onLoad={(e) => {
+								videoRef.current!.play();
+							}}
 							onTimeUpdate={(e) => {
 								// setPlayerData({
 								// 	...playerData,
@@ -115,8 +121,7 @@ const Preview = (props: Props) => {
 									"track",
 									JSON.stringify({
 										...playerData,
-										active: true,
-										current: videoRef.current?.currentTime,
+										current: videoRef.current!.currentTime,
 									}),
 								);
 							}}
