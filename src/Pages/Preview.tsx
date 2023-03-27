@@ -13,6 +13,7 @@ import { Navigate } from "react-router-dom";
 import { PlayerDataContext } from "../Provider/PlayerContextProvider";
 import { MdDownload } from "react-icons/md";
 import Navbar from "../Components/Navbar";
+import Loader from "../Components/Loader";
 
 type Props = {};
 
@@ -73,14 +74,22 @@ const Preview = (props: Props) => {
 	console.log("preview rended");
 
 	if (loading) {
-		return <>Loading...</>;
+		return (
+			<Box>
+				<Loader />
+			</Box>
+		);
 	}
 
 	if (error) {
 		return <Navigate to={"/error"} />;
 	}
 	if (playerData.active) {
-		return <>Loading...</>;
+		return (
+			<Box>
+				<Loader />
+			</Box>
+		);
 	}
 
 	return (

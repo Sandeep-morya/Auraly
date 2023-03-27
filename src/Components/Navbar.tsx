@@ -8,6 +8,7 @@ import getSearchResult from "../Redux/searchData/search_data.actions";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import VideoGrid from "./VideoGrid";
+import Loader from "./Loader";
 type Props = {};
 
 const Navbar = (props: Props) => {
@@ -98,6 +99,7 @@ const Navbar = (props: Props) => {
 							backdropFilter: "blur(10px)",
 							boxShadow: "rgba(0, 0, 0, 0.45) 0px 25px 20px -20px",
 						}}>
+						{searchResults.loading && <Loader />}
 						<VideoGrid
 							fixedColumns="1fr 1fr"
 							title=""
