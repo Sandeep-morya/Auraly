@@ -139,7 +139,7 @@ export const result: SingleItem = {
 		},
 		{
 			itag: 22,
-			url: "https://rr1---sn-4g5lznes.googlevideo.com/videoplayback?expire=1679767087&ei=z-EeZLTlA4GU1gKGiquAAQ&ip=23.88.39.196&id=o-AO_SIFRlYr-viAPnMfxqVzBP5TXeaUNQDcVzHW-aAe3G&itag=22&source=youtube&requiressl=yes&mh=FU&mm=31%2C29&mn=sn-4g5lznes%2Csn-4g5edndr&ms=au%2Crdu&mv=u&mvi=1&pl=26&spc=99c5CUQvbWIDbQnU2_owOGMu3nOzrrXPm2L0DvbR1RB4BgVDOg&vprv=1&svpuc=1&mime=video%2Fmp4&cnr=14&ratebypass=yes&dur=203.267&lmt=1610005479785447&mt=1679743879&fvip=1&fexp=24007246&c=ANDROID&txp=5432432&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRQIhAI6BWj_9_Gg4xFJnwX4zjAmGFQHot0ocML6_k_sgig4DAiA-pnf8LGpwanIuujqmdMx79qtwjU5_rUwwe1eATfZbYw%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl&lsig=AG3C_xAwRQIgDetuJ-r_gLRQybkbLz2T19FlrSBXtKACk86z6qU3ENQCIQDeFsHmG2NeRSA0M2grZ470v9NduL6qJmj7DI69SiZmHw%3D%3D",
+			url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
 			mimeType: 'video/mp4; codecs="avc1.64001F, mp4a.40.2"',
 			bitrate: 325080,
 			width: 1280,

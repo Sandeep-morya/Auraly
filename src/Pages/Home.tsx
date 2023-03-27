@@ -38,7 +38,6 @@ const Home = (props: Props) => {
 				<Billboard />
 
 				{searchResult.loading && <Loader />}
-				<Typography>Auraly</Typography>
 			</Box>
 
 			<Box
