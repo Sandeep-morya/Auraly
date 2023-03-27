@@ -5,6 +5,7 @@ An Entertainment website, for downloading and play videos movies and music
 [Live URL](https://sandeep-auraly.vercel.app/)
 
 "dependencies": {
+		
 		"@emotion/react": "^11.10.6",
 		
 		"@emotion/styled": "^11.10.6",
