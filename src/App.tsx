@@ -38,7 +38,9 @@ function App() {
 
 	useEffect(() => {
 		if (!loading) {
-			setHidden(true);
+			setTimeout(() => {
+				setHidden(true);
+			}, 1500);
 		}
 	}, [loading]);
 
