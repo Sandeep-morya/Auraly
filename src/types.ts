@@ -55,6 +55,7 @@ export interface SingleItem {
 	allowRatings: boolean;
 	viewCount: string;
 	isPrivate: boolean;
+	captions?: any;
 	isUnpluggedCorpus: boolean;
 	isLiveContent: boolean;
 	storyboards: Storyboard[];

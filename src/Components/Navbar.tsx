@@ -1,5 +1,5 @@
-﻿import { Avatar, Box, Button, Popover, Stack } from "@mui/material";
-import React, { useState } from "react";
+﻿import { Box, Stack } from "@mui/material";
+import React from "react";
 import Logo from "./Logo";
 import SearchBox from "./SearchBox";
 import useDebounce from "../Hooks/useDebounce";
@@ -22,7 +22,7 @@ const Navbar = (props: Props) => {
 	React.useEffect(() => {
 		getSearchResult(dispatch, query || data.keywords[0]);
 	}, [query, data.keywords]);
-	console.log("navbar comrended");
+	// console.log(searchResults);
 
 	return (
 		<Stack

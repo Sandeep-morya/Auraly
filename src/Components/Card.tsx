@@ -1,8 +1,7 @@
 ﻿import { Box, Stack, useTheme } from "@mui/material";
 import React from "react";
-import { FaVideo, FaMusic, FaPlay } from "react-icons/fa";
-// @ts-ignore,
-import Marquee from "./Marquee";
+import { FaPlay } from "react-icons/fa";
+
 import { SearchResultType } from "../types";
 import "../Styles/card.css";
 import { useNavigate } from "react-router-dom";

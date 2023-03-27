@@ -27,7 +27,7 @@ const Billboard = (props: Props) => {
 				poster={data.thumbnail[data.thumbnail.length - 1].url}
 				loop>
 				<source
-					src={data.formats[data.formats.length - 1].url}
+					src={data.formats[data.formats.length - 1].url + "#t=28"}
 					type="video/mp4"
 				/>
 			</video>

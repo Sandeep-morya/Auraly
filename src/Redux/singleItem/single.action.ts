@@ -14,7 +14,7 @@ export async function getSingle(dispatch: AppDispatch, id: string) {
 		url: "https://ytstream-download-youtube-videos.p.rapidapi.com/dl",
 		params: { id },
 		headers: {
-			"X-RapidAPI-Key": "25a08ff1ecmshb0e013342682ff5p1df7bbjsn9bf370586ba4",
+			"X-RapidAPI-Key": import.meta.env.VITE_API_SEARCH_KEY,
 			"X-RapidAPI-Host": "ytstream-download-youtube-videos.p.rapidapi.com",
 		},
 	};
@@ -22,11 +22,11 @@ export async function getSingle(dispatch: AppDispatch, id: string) {
 	axios
 		.request(options)
 		.then(function (response) {
-			console.log(response.data);
+			// console.log(response.data);
 			dispatch({ type: SINGLE_SUCCESSFULL, payload: response.data });
 		})
 		.catch(function (error) {
-			console.error(error);
+			// console.error(error);
 			dispatch({ type: SINGLE_ERROR });
 		});
 }

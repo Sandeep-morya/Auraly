@@ -1,5 +1,4 @@
 ﻿import React from "react";
-import { useAppSelector } from "../Hooks/Redux_hooks";
 import { PlayerDataType } from "../types";
 
 export const PlayerDataContext = React.createContext(

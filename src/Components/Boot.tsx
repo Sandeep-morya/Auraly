@@ -1,7 +1,5 @@
 ﻿import { Stack } from "@mui/material";
-import React from "react";
 import "../Styles/boot.css";
-import Billboard from "./Billboard";
 
 const Boot = () => {
 	return (
@@ -13,7 +11,6 @@ const Boot = () => {
 			justifyContent="center"
 			bgcolor={"#121212"}>
 			<img className="boot" src="/auraly_logo.png" alt="auraly_logo" />
-			{/* <Billboard /> */}
 		</Stack>
 	);
 };
