@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { MdOutlineQueryStats } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import Billboard from "../Components/Billboard";
+import Boot from "../Components/Boot";
 import Card from "../Components/Card";
 import Heading from "../Components/Heading";
 import Navbar from "../Components/Navbar";
@@ -21,10 +22,26 @@ const Home = (props: Props) => {
 	const { playerData } = useContext(PlayerDataContext);
 
 	return (
-		<Stack width="100%" position="relative" top="0" gap={"2rem"}>
-			{searchResult.list.length > 0 && (
-				<VideoGrid title="Videos" items={searchResult.list} />
-			)}
+		<Stack width="100%" top="0" gap={"2rem"}>
+			<Box
+				sx={{
+					width: "100%",
+					height: "75vh",
+					position: "relative",
+				}}>
+				<Navbar />
+				<Billboard />
+			</Box>
+
+			<Box
+				sx={{
+					width: "100%",
+					padding: "1rem",
+				}}>
+				{searchResult.list.length > 0 && (
+					<VideoGrid title="Recommended" items={searchResult.list} />
+				)}
+			</Box>
 		</Stack>
 	);
 };

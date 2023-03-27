@@ -47,18 +47,7 @@ function App() {
 			<CssBaseline />
 			{!hidden && <Boot />}
 			{hidden && (
-				<Stack
-					width="100%"
-					gap="2rem"
-					padding={{
-						xs: "0 0.1rem",
-						sm: "0 0.5rem",
-						md: "0 1rem",
-						lg: "0 5rem",
-						xl: "0 15rem",
-					}}>
-					<Navbar />
-
+				<Stack width="100%" gap="2rem">
 					<AllRoutes />
 
 					<AudioPlayer />

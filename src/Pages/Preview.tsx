@@ -12,6 +12,7 @@ import { getSingle } from "../Redux/singleItem/single.action";
 import { Navigate } from "react-router-dom";
 import { PlayerDataContext } from "../Provider/PlayerContextProvider";
 import { MdDownload } from "react-icons/md";
+import Navbar from "../Components/Navbar";
 
 type Props = {};
 
@@ -83,7 +84,19 @@ const Preview = (props: Props) => {
 	}
 
 	return (
-		<Stack width="100%" position="relative" top="0" gap={"2rem"}>
+		<Stack
+			width="100%"
+			position="relative"
+			top="0"
+			gap={"2rem"}
+			paddingTop={{
+				xs: "10rem",
+				sm: "8rem",
+				md: "7rem",
+				lg: "6.3rem",
+				xl: "6.3rem",
+			}}>
+			<Navbar />
 			<Stack
 				width={"100%"}
 				maxHeight="max-content"
@@ -95,6 +108,7 @@ const Preview = (props: Props) => {
 					xl: "row",
 				}}
 				gap="2rem"
+				padding={"0 0.5rem"}
 				justifyContent={"space-between"}>
 				{/* Left side */}
 				<Stack
@@ -105,7 +119,7 @@ const Preview = (props: Props) => {
 						lg: "70%",
 						xl: "70%",
 					}}>
-					<Box>
+					<Box className="preview_video">
 						<video
 							playsInline
 							autoPlay
@@ -172,7 +186,7 @@ const Preview = (props: Props) => {
 								<p>{videoData.title}</p>
 								<p>{videoData.channelTitle}</p>
 							</Stack>
-							<FaRegHeart size="40" style={{}} />
+							{/* <FaRegHeart size="40" style={{}} /> */}
 						</Stack>
 
 						<Stack
