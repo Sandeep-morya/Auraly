@@ -20,14 +20,18 @@ const Card = ({ data }: Props) => {
 		navigate("/preview/" + data.id);
 	}
 	return (
-		<Stack gap="0.5rem" sx={{ "&:hover": { scale: "1.2" } }}>
+		<Stack flex="1" gap="0.5rem" sx={{ "&:hover": { scale: "1.2" } }}>
 			<Box
 				className="card_div"
 				sx={{ aspectRatio: "1280/720", objectFit: "cover" }}
 				position={"relative"}
 				overflow="hidden">
 				<img
-					style={{ width: "100%", height: "100%", objectFit: "cover" }}
+					style={{
+						width: "100%",
+						height: "100%",
+						objectFit: "cover",
+					}}
 					src={data.thumbnail.url}
 					alt={data.title}
 				/>
@@ -49,13 +53,9 @@ const Card = ({ data }: Props) => {
 			</Box>
 			<span
 				style={{
-					height: "2.5rem",
-					textOverflow: "ellipsis",
-					wordWrap: "break-word",
-					overflow: "hidden",
 					fontSize: "0.8rem",
 				}}>
-				{data.title}
+				{data.title.slice(0, 40) + "..."}
 			</span>
 		</Stack>
 	);
