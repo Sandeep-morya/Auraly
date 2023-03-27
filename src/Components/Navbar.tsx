@@ -13,8 +13,8 @@ const Navbar = (props: Props) => {
 	const [text, setText] = React.useState("");
 	const query = useDebounce(text);
 	const { loading, data, error } = useAppSelector((store) => store.single);
+	const auth = useAppSelector((store) => store.auth);
 	const dispatch = useAppDispatch();
-	const [open, setOpen] = useState(false);
 
 	React.useEffect(() => {
 		getSearchResult(dispatch, query || data.keywords[0]);
@@ -57,23 +57,7 @@ const Navbar = (props: Props) => {
 				alignItems="center">
 				<Logo />
 
-				<Box position={"relative"} onClick={() => setOpen(!open)}>
-					<Avatar
-						alt="Remy Sharp"
-						src="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
-					/>
-
-					<Box
-						sx={{
-							position: "absolute",
-							left: "100%",
-							top: "100%",
-							display: open ? "block" : "none",
-						}}>
-						<LoginButton />
-						<LogoutButton />
-					</Box>
-				</Box>
+				<Box>{auth.token == "" ? <LoginButton /> : <LogoutButton />}</Box>
 			</Stack>
 			<Stack
 				width={{

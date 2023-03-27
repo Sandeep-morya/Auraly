@@ -7,7 +7,7 @@
 const initialState = {
 	loading: false,
 	error: false,
-	token: "",
+	token: localStorage.getItem("token") || "",
 };
 interface ActionType {
 	type: string;

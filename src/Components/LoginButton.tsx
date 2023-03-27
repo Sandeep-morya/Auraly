@@ -1,19 +1,34 @@
-﻿import React from "react";
+﻿import React, { useState } from "react";
+import { useGoogleLogin, googleLogout } from "@react-oauth/google";
+import Button from "./BubbleButton";
+import { Avatar, useTheme } from "@mui/material";
+import { useAppDispatch, useAppSelector } from "../Hooks/Redux_hooks";
+import { handleLogin, handleLoginError } from "../Redux/auth/auth.actions";
 
 type Props = {};
-const client_id = import.meta.env.VITE_GOOGLE_ID;
 
 const LoginButton = (props: Props) => {
-	console.log(client_id);
+	const theme = useTheme();
+	const dispatch = useAppDispatch();
+	const login = useGoogleLogin({
+		onSuccess: (tokenResponse) => handleLogin(dispatch, tokenResponse),
+	});
 
-	function handleLogin(e: any) {
-		console.log("login", e);
-	}
+	React.useEffect(() => {
+		googleLogout();
+	}, []);
 
-	function handleFailure(e: any) {
-		console.log("failure", e);
-	}
-	return <div id="signInButton">logiin</div>;
+	return (
+		<Button
+			colorScheme={theme.palette.text.primary}
+			onClick={login}
+			style={{ color: theme.palette.primary.contrastText }}>
+			<Avatar
+				alt="Remy Sharp"
+				src="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
+			/>
+		</Button>
+	);
 };
 
 export default LoginButton;
