@@ -7,10 +7,11 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import Description from "../Components/Description";
 import VideoGrid from "../Components/VideoGrid";
 import { useAppDispatch, useAppSelector } from "../Hooks/Redux_hooks";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { getSingle } from "../Redux/singleItem/single.action";
 import { Navigate } from "react-router-dom";
 import { PlayerDataContext } from "../Provider/PlayerContextProvider";
+import { MdDownload } from "react-icons/md";
 
 type Props = {};
 
@@ -194,14 +195,15 @@ const Preview = (props: Props) => {
 							/>
 
 							<Button
-								size="lg"
-								onClick={() => console.log(format.url)}
 								style={{
-									width: "40%",
 									color: theme.palette.primary.contrastText,
+									borderRadius: "0.3rem",
+									padding: "0.8rem 1.5rem",
 								}}
 								colorScheme={theme.palette.text.primary}>
-								{"Download"}
+								<Link to={format.url} download>
+									Download
+								</Link>
 							</Button>
 						</Stack>
 					</Stack>

@@ -11,7 +11,7 @@ const Heading = ({ title }: Props) => {
 			<Typography variant="h5" fontWeight={"700"} letterSpacing=".15rem">
 				{title}
 			</Typography>
-			<Box width="50%" height=".2rem" bgcolor={"white"}></Box>
+			<Box width="100%" height=".2rem" bgcolor={"white"}></Box>
 		</Stack>
 	);
 };
