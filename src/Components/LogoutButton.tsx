@@ -2,7 +2,6 @@
 import { googleLogout } from "@react-oauth/google";
 import Button from "./BubbleButton";
 import { Avatar, useTheme } from "@mui/material";
-import { MdLogout } from "react-icons/md";
 import { useAppDispatch } from "../Hooks/Redux_hooks";
 import { handleLogout } from "../Redux/auth/auth.actions";
 type Props = {};

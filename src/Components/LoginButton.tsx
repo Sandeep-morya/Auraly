@@ -1,9 +1,9 @@
-﻿import React, { useState } from "react";
+﻿import React from "react";
 import { useGoogleLogin, googleLogout } from "@react-oauth/google";
 import Button from "./BubbleButton";
 import { Avatar, useTheme } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../Hooks/Redux_hooks";
-import { handleLogin, handleLoginError } from "../Redux/auth/auth.actions";
+import { useAppDispatch } from "../Hooks/Redux_hooks";
+import { handleLogin } from "../Redux/auth/auth.actions";
 
 type Props = {};
 

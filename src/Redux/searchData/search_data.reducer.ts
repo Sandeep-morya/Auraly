@@ -3,7 +3,7 @@ import {
 	SEARCH_DATA_LOADING,
 	SEARCH_DATA_ERROR,
 	SEARCH_DATA_SUCCESSFULL,
-} from "./trending.types";
+} from "./search_data.types";
 const initialState = {
 	loading: false,
 	error: false,

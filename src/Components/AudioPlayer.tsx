@@ -2,10 +2,8 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../Hooks/Redux_hooks";
-// import { result as data } from "../Pages/data";
 import { PlayerDataContext } from "../Provider/PlayerContextProvider";
-import { SingleItemState } from "../Redux/singleItem/single.reducer";
-import { PlayerDataType, SingleItem } from "../types";
+import { PlayerDataType } from "../types";
 
 const AudioPlayer = () => {
 	const { loading, error, data } = useAppSelector((store) => store.single);
@@ -17,7 +15,7 @@ const AudioPlayer = () => {
 
 	const location = useLocation();
 
-	console.log(location, active);
+	// console.log(location, active);
 
 	React.useEffect(() => {
 		const track = JSON.parse(
@@ -40,7 +38,7 @@ const AudioPlayer = () => {
 		);
 	}, [location]);
 
-	console.log("audio Player comrended");
+	// console.log("audio Player comrended");
 
 	if (!active) {
 		return <></>;

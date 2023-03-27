@@ -3,7 +3,6 @@ import Button from "../Components/BubbleButton";
 import React, { useEffect, useContext, useState } from "react";
 import { Format, PlayerDataType, SingleItem } from "../types";
 import SelectBox from "../Components/SelectBox";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
 import Description from "../Components/Description";
 import VideoGrid from "../Components/VideoGrid";
 import { useAppDispatch, useAppSelector } from "../Hooks/Redux_hooks";
@@ -11,7 +10,6 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { getSingle } from "../Redux/singleItem/single.action";
 import { Navigate } from "react-router-dom";
 import { PlayerDataContext } from "../Provider/PlayerContextProvider";
-import { MdDownload } from "react-icons/md";
 import Navbar from "../Components/Navbar";
 import Loader from "../Components/Loader";
 
@@ -30,10 +28,11 @@ const Preview = (props: Props) => {
 	const { loading, error, data } = useAppSelector((store) => store.single);
 	const [videoData, setVideoData] = useState(data);
 
-	console.log("playerData" + playerData.current);
+	// console.log("playerData" + playerData.current);
+	// console.log(data);
 
 	useEffect(() => {
-		console.log("fomrat renderd");
+		// console.log("fomrat renderd");
 		const track = JSON.parse(
 			localStorage.getItem("track") as string,
 		) as PlayerDataType;
@@ -71,7 +70,7 @@ const Preview = (props: Props) => {
 		}
 	}, [videoData]);
 
-	console.log("preview rended");
+	// console.log("preview rended");
 
 	if (loading) {
 		return (
@@ -203,8 +202,8 @@ const Preview = (props: Props) => {
 								xs: "100%",
 								sm: "100%",
 								md: "100%",
-								lg: "50%",
-								xl: "50%",
+								lg: "30%",
+								xl: "30%",
 							}}
 							className="video_options"
 							justifyContent="space-between"
@@ -240,6 +239,7 @@ const Preview = (props: Props) => {
 				<Stack
 					height="100vh"
 					sx={{
+						paddingTop: "2rem",
 						overflowY: "scroll",
 						overflowX: "hidden",
 						"&::-webkit-scrollbar": { display: "none" },
@@ -256,7 +256,7 @@ const Preview = (props: Props) => {
 						<VideoGrid
 							fixedColumns="1fr 1fr"
 							audio={false}
-							title="Search Result"
+							title="Recommended"
 							items={searchResult.list}
 						/>
 					)}
