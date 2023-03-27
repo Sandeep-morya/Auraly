@@ -1,10 +1,14 @@
-﻿import { Box, Grid, Stack, Typography } from "@mui/material";
+﻿import { Box, Grid, Stack, Typography, useTheme } from "@mui/material";
 import React, { useContext } from "react";
 import { MdOutlineQueryStats } from "react-icons/md";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import Billboard from "../Components/Billboard";
+import Boot from "../Components/Boot";
+import Button from "../Components/BubbleButton";
 import Card from "../Components/Card";
 import Heading from "../Components/Heading";
+import Loader from "../Components/Loader";
 import Navbar from "../Components/Navbar";
 import SearchBox from "../Components/SearchBox";
 import VideoGrid from "../Components/VideoGrid";
@@ -19,12 +23,33 @@ const Home = (props: Props) => {
 	const searchResult = useAppSelector((store) => store.searchData);
 	const dispatch = useAppDispatch();
 	const { playerData } = useContext(PlayerDataContext);
+	const theme = useTheme();
+	const { loading, error, data } = useAppSelector((store) => store.single);
 
 	return (
-		<Stack width="100%" position="relative" top="0" gap={"2rem"}>
-			{searchResult.list.length > 0 && (
-				<VideoGrid title="Videos" items={searchResult.list} />
-			)}
+		<Stack width="100%" top="0" gap={"2rem"}>
+			<Box
+				sx={{
+					width: "100%",
+					height: "75vh",
+					position: "relative",
+				}}>
+				<Navbar />
+				<Billboard />
+
+				{searchResult.loading && <Loader />}
+				<Typography>Auraly</Typography>
+			</Box>
+
+			<Box
+				sx={{
+					width: "100%",
+					padding: "1rem",
+				}}>
+				{searchResult.list.length > 0 && (
+					<VideoGrid title="Recommended" items={searchResult.list} />
+				)}
+			</Box>
 		</Stack>
 	);
 };

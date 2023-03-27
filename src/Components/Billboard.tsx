@@ -1,9 +1,10 @@
 ﻿import { Box } from "@mui/material";
 import React from "react";
-
+import { useAppSelector } from "../Hooks/Redux_hooks";
 type Props = {};
 
 const Billboard = (props: Props) => {
+	const { loading, error, data } = useAppSelector((store) => store.single);
 	return (
 		<Box
 			sx={{
@@ -24,7 +25,7 @@ const Billboard = (props: Props) => {
 				muted
 				loop>
 				<source
-					src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+					src={data.formats[data.formats.length - 1].url}
 					type="video/mp4"
 				/>
 			</video>

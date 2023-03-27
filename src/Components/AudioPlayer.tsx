@@ -55,11 +55,19 @@ const AudioPlayer = () => {
 			}}
 			sx={{
 				width: {
-					xs: "calc(100vw - 0.2rem)",
+					xs: "calc(100vw - 0.4rem)",
 					sm: "calc(100vw - 1rem)",
 					md: "calc(100vw - 2rem)",
-					lg: "calc(100vw - 10rem)",
-					xl: "calc(100vw - 30rem)",
+					lg: "calc(100vw - 5rem)",
+					xl: "calc(100vw - 5rem)",
+				},
+
+				left: {
+					xs: "0.2rem",
+					sm: "0.5rem",
+					md: "1rem",
+					lg: "2.5rem",
+					xl: "2.5rem",
 				},
 				position: "fixed",
 				bottom: playerData.active ? "2rem" : "-10rem" /*  {

@@ -9,7 +9,7 @@
 	text-shadow: 0 0 1px rgba(0, 0, 0, 0.404);
 }
 body {
-	overflow-x: hidden;
+	overflow-x: hidden !important;
 }
 a {
 	text-decoration: none;

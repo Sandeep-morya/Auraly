@@ -7,6 +7,8 @@ import { useAppDispatch, useAppSelector } from "../Hooks/Redux_hooks";
 import getSearchResult from "../Redux/searchData/search_data.actions";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
+import VideoGrid from "./VideoGrid";
+import Loader from "./Loader";
 type Props = {};
 
 const Navbar = (props: Props) => {
@@ -14,6 +16,7 @@ const Navbar = (props: Props) => {
 	const query = useDebounce(text);
 	const { loading, data, error } = useAppSelector((store) => store.single);
 	const auth = useAppSelector((store) => store.auth);
+	const searchResults = useAppSelector((store) => store.searchData);
 	const dispatch = useAppDispatch();
 
 	React.useEffect(() => {
@@ -23,7 +26,7 @@ const Navbar = (props: Props) => {
 
 	return (
 		<Stack
-			position="sticky"
+			position="fixed"
 			top="0"
 			className="navbar"
 			zIndex="7"
@@ -60,6 +63,7 @@ const Navbar = (props: Props) => {
 				<Box>{auth.token == "" ? <LoginButton /> : <LogoutButton />}</Box>
 			</Stack>
 			<Stack
+				position="relative"
 				width={{
 					xs: "100%",
 					sm: "100%",
@@ -80,6 +84,29 @@ const Navbar = (props: Props) => {
 				alignItems="center"
 				fontWeight="600">
 				<SearchBox {...{ text, setText }} />
+				{query != "" && (
+					<Box
+						sx={{
+							width: "100%",
+							height: "50vh",
+							position: "absolute",
+							top: "100%",
+							overflow: "scroll",
+							backgroundColor: "rgba(0,0,0,0.9)",
+							"&::-webkit-scrollbar": { display: "none" },
+							borderRadius: "0.5rem",
+							padding: "0 2rem",
+							backdropFilter: "blur(10px)",
+							boxShadow: "rgba(0, 0, 0, 0.45) 0px 25px 20px -20px",
+						}}>
+						{searchResults.loading && <Loader />}
+						<VideoGrid
+							fixedColumns="1fr 1fr"
+							title=""
+							items={searchResults.list}
+						/>
+					</Box>
+				)}
 			</Stack>
 		</Stack>
 	);
