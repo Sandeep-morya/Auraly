@@ -17,7 +17,8 @@ const Home = (props: Props) => {
 				sx={{
 					width: "100%",
 					height: "75vh",
-					position: "relative",
+					position: "sticky",
+					top: "0",
 				}}>
 				<Navbar />
 				<Billboard />
@@ -29,6 +30,9 @@ const Home = (props: Props) => {
 				sx={{
 					width: "100%",
 					padding: "1rem",
+					position: "sticky",
+					top: "0",
+					backdropFilter: "blur(30px) brightness(90%)",
 				}}>
 				{searchResult.list.length > 0 && (
 					<VideoGrid title="Recommended" items={searchResult.list} />

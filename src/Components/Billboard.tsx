@@ -11,7 +11,7 @@ const Billboard = (props: Props) => {
 			sx={{
 				width: "100%",
 				height: "100%",
-				position: "absolute",
+				position: "sticky",
 				top: "0",
 			}}
 			className="bill_board">
@@ -20,7 +20,7 @@ const Billboard = (props: Props) => {
 					width: "100%",
 					height: "100%",
 					objectFit: "cover",
-					opacity: "0.4",
+					filter:"brightness(50%)",
 				}}
 				autoPlay
 				muted
