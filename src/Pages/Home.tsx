@@ -32,7 +32,7 @@ const Home = (props: Props) => {
 					padding: "1rem",
 					position: "sticky",
 					top: "0",
-					backdropFilter: "blur(30px) brightness(90%)",
+					backdropFilter: "blur(40px) brightness(90%)",
 				}}>
 				{searchResult.list.length > 0 && (
 					<VideoGrid title="Recommended" items={searchResult.list} />

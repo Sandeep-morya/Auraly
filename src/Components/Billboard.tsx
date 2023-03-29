@@ -20,7 +20,7 @@ const Billboard = (props: Props) => {
 					width: "100%",
 					height: "100%",
 					objectFit: "cover",
-					filter:"brightness(50%)",
+					filter: "brightness(80%)",
 				}}
 				autoPlay
 				muted
