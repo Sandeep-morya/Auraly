@@ -1,7 +1,9 @@
 ﻿.card_div:hover .card_options {
-	opacity: 0.5;
+	filter: brightness(100%);
+	opacity: 1;
 }
 .card_options {
+	filter: brightness(0%);
 	opacity: 0;
 }
 .card_div {

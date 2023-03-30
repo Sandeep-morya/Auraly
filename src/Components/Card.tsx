@@ -48,6 +48,8 @@ const Card = ({ data }: Props) => {
 					fontSize={"2rem"}
 					bgcolor={theme.palette.primary.contrastText}>
 					<FaPlay onClick={handleClick} />
+
+					{data.duration_formatted}
 				</Stack>
 			</Box>
 			<span

@@ -8,7 +8,7 @@ type Props = {
 
 const Description = ({ description, keywords }: Props) => {
 	return (
-		<Stack marginTop={"2rem"} width="100%" gap="2rem">
+		<Stack marginTop={"2rem"} width="100%" overflow={"hidden"} gap="2rem">
 			<Divider />
 			<Stack width="100%" direction="row" flexWrap="wrap" gap="1rem">
 				{keywords.map((tag, index) => (
