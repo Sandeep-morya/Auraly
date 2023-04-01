@@ -44,10 +44,10 @@ const Card = ({ data }: Props) => {
 					justifyContent="center"
 					width="100%"
 					height="100%"
-					gap="3rem"
-					fontSize={"2rem"}
+					gap="1.5rem"
+					fontSize={"1.5rem"}
 					bgcolor={theme.palette.primary.contrastText}>
-					<FaPlay onClick={handleClick} />
+					<FaPlay size={30} onClick={handleClick} />
 
 					{data.duration_formatted}
 				</Stack>
