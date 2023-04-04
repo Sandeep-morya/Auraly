@@ -8,7 +8,7 @@ type Props = {
 	error?: string;
 };
 
-const Error = ({ code = 404, error = "Page Not Found" }: Props) => {
+const Error = ({ code = 503, error = "Internal Server Error" }: Props) => {
 	return (
 		<>
 			<Navbar />
