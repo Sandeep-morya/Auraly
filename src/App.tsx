@@ -19,7 +19,7 @@ const client_id = import.meta.env.VITE_GOOGLE_ID;
 
 function App() {
 	const [hidden, setHidden] = useState(false);
-	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+	// const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 	// const { playerData, setPlayerData } = useContext(PlayerDataContext);
 
 	// const { pathname } = useLocation();
@@ -30,10 +30,10 @@ function App() {
 		() =>
 			createTheme({
 				palette: {
-					mode: prefersDarkMode ? "dark" : "light",
+					mode: "dark",
 				},
 			}),
-		[prefersDarkMode],
+		[],
 	);
 
 	useEffect(() => {
