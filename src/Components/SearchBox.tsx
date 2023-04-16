@@ -19,8 +19,10 @@ const SearchBox = ({ text, setText }: Props) => {
 
 				"& .MuiOutlinedInput-root": {
 					"& fieldset": {
-						// borderColor: ,
+						borderColor: "white",
 						borderRadius: "5rem",
+						borderWidth: "0.1rem",
+						boxShadow: "0 0 5px rgba(0,0,0,0.5)",
 					},
 				},
 			}}

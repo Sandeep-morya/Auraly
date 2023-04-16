@@ -15,7 +15,11 @@ const Logo = (props: Props) => {
 					state: location.pathname,
 				})
 			}
-			style={{ width: "10rem", transform: "scale(0.4) translateX(-60%)" }}>
+			style={{
+				width: "10rem",
+				transform: "scale(0.4) translateX(-60%)",
+				filter: "drop-shadow(0 0 10px black)",
+			}}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				version="1.1"

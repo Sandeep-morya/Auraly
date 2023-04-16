@@ -31,9 +31,7 @@ const Navbar = (props: Props) => {
 			className="navbar"
 			zIndex="7"
 			sx={{
-				backdropFilter: "blur(100px)",
 				borderRadius: "0 0 1rem 1rem",
-				boxShadow: "rgba(0, 0, 0, 0.45) 0px 25px 20px -20px",
 			}}
 			direction={{
 				xs: "column",
