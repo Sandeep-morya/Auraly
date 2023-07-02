@@ -12,6 +12,7 @@ import { Navigate } from "react-router-dom";
 import { PlayerDataContext } from "../Provider/PlayerContextProvider";
 import Navbar from "../Components/Navbar";
 import Loader from "../Components/Loader";
+import useDebounce from "../Hooks/useDebounce";
 
 type Props = {};
 
@@ -28,6 +29,7 @@ const Preview = (props: Props) => {
 	const { loading, error, data } = useAppSelector((store) => store.single);
 	const [videoData, setVideoData] = useState(data);
 
+	const dvd = useDebounce(JSON.stringify(videoData), 2000);
 	// console.log("playerData" + playerData.current);
 	// console.log(data);
 
@@ -64,11 +66,12 @@ const Preview = (props: Props) => {
 	}, [loading]);
 
 	useEffect(() => {
+		const videoData = JSON.parse(dvd);
 		if (videoData?.formats?.length > 0) {
 			setFormat(videoData.formats[videoData.formats.length - 1]);
 			localStorage.setItem("trackData", JSON.stringify(videoData));
 		}
-	}, [videoData]);
+	}, [dvd]);
 
 	// console.log("preview rended");
 
