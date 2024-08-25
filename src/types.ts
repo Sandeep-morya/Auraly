@@ -1,23 +1,31 @@
 ﻿export interface SearchResultType {
-	uploadedAt: string;
-	id: string;
-	tags: Tags;
-	nsfw: boolean;
-	private: boolean;
-	description: null;
-	url: string;
-	unlisted: boolean;
-	channel: Channel;
-	thumbnail: Thumbnail;
-	ratings: Ratings;
-	shorts: boolean;
-	title: string;
-	live: boolean;
-	duration_formatted: string;
-	views: number;
-	duration: number;
-	shorts_url: string;
 	type: string;
+	videoId: string;
+	title: string;
+	channelTitle: string;
+	channelId: string;
+	channelHandle: string;
+	channelThumbnail: VideoThumbnail[];
+	description: string;
+	viewCount: string;
+	publishedTimeText: string;
+	publishDate: string;
+	publishedAt: string;
+	lengthText: string;
+	thumbnail: VideoThumbnail[];
+	richThumbnail: RichThumbnail[];
+}
+
+interface VideoThumbnail {
+	url: string;
+	width: number;
+	height: number;
+}
+
+interface RichThumbnail {
+	url: string;
+	width: number;
+	height: number;
 }
 
 export interface Channel {

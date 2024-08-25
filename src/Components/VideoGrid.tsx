@@ -21,7 +21,7 @@ const VideoGrid = ({
 }: Props) => {
 	return (
 		<Stack gap={"1rem"}>
-			<Heading {...{ title }} />
+			<Heading title={title} />
 			<Box
 				sx={{
 					display: "grid",
@@ -36,8 +36,8 @@ const VideoGrid = ({
 						  },
 					gap: "2rem",
 				}}>
-				{items.map((data) => (
-					<Card key={data.id} {...{ data, audio, video }} />
+				{items?.map((data, index) => (
+					<Card key={index} {...{ data, audio, video }} />
 				))}
 			</Box>
 		</Stack>

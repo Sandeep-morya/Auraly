@@ -11,7 +11,7 @@ const Description = ({ description, keywords }: Props) => {
 		<Stack marginTop={"2rem"} width="100%" overflow={"hidden"} gap="2rem">
 			<Divider />
 			<Stack width="100%" direction="row" flexWrap="wrap" gap="1rem">
-				{keywords.map((tag, index) => (
+				{keywords?.map((tag, index) => (
 					<Chip variant="outlined" label={"#" + tag} key={tag + index} />
 				))}
 			</Stack>

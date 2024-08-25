@@ -1,9 +1,5 @@
 ﻿import axios from "axios";
-import {
-	SEARCH_DATA_LOADING,
-	SEARCH_DATA_ERROR,
-	SEARCH_DATA_SUCCESSFULL,
-} from "./search_data.types";
+import { SEARCH_DATA_LOADING, SEARCH_DATA_ERROR, SEARCH_DATA_SUCCESSFULL } from "./search_data.types";
 
 const api_key = import.meta.env.VITE_API_SEARCH_KEY;
 const api_host = import.meta.env.VITE_API_SEARCH_HOST;
@@ -29,7 +25,7 @@ function getSearchResult(dispatch: any, query: string) {
 	axios
 		.request(options)
 		.then(function ({ data }) {
-			dispatch({ type: SEARCH_DATA_SUCCESSFULL, payload: data.results });
+			dispatch({ type: SEARCH_DATA_SUCCESSFULL, payload: data.data });
 		})
 		.catch(function (error) {
 			dispatch({ type: SEARCH_DATA_ERROR });

@@ -20,8 +20,8 @@ const Navbar = (props: Props) => {
 	const dispatch = useAppDispatch();
 
 	React.useEffect(() => {
-		getSearchResult(dispatch, query || data.keywords[0]);
-	}, [query, data.keywords]);
+		getSearchResult(dispatch, query || data?.keywords?.[0]);
+	}, [query, data?.keywords]);
 	// console.log(searchResults);
 
 	return (

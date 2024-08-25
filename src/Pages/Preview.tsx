@@ -68,7 +68,7 @@ const Preview = (props: Props) => {
 	useEffect(() => {
 		const videoData = JSON.parse(dvd);
 		if (videoData?.formats?.length > 0) {
-			setFormat(videoData.formats[videoData.formats.length - 1]);
+			setFormat(videoData.formats[videoData.formats?.length - 1]);
 			localStorage.setItem("trackData", JSON.stringify(videoData));
 		}
 	}, [dvd]);
@@ -233,8 +233,8 @@ const Preview = (props: Props) => {
 						</Stack>
 					</Stack>
 					<Description
-						description={videoData.description}
-						keywords={videoData.keywords}
+						description={videoData?.description}
+						keywords={videoData?.keywords}
 					/>
 				</Stack>
 
@@ -255,7 +255,7 @@ const Preview = (props: Props) => {
 						lg: "30%",
 						xl: "30%",
 					}}>
-					{searchResult.list.length > 0 && (
+					{searchResult.list?.length > 0 && (
 						<VideoGrid
 							fixedColumns="1fr 1fr"
 							audio={false}

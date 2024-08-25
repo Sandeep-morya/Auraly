@@ -10,7 +10,7 @@ type Props = {};
 
 const Home = (props: Props) => {
 	const searchResult = useAppSelector((store) => store.searchData);
-
+console.log({searchResult})
 	return (
 		<Stack width="100%" top="0">
 			<Box
@@ -34,7 +34,7 @@ const Home = (props: Props) => {
 					top: "0",
 					backdropFilter: "blur(40px) brightness(90%)",
 				}}>
-				{searchResult.list.length > 0 && (
+				{searchResult.list?.length > 0 && (
 					<VideoGrid title="Recommended" items={searchResult.list} />
 				)}
 			</Box>

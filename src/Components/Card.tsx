@@ -16,7 +16,7 @@ const Card = ({ data }: Props) => {
 
 	function handleClick() {
 		localStorage.removeItem("trackData");
-		navigate("/preview/" + data.id);
+		navigate("/preview/" + data.videoId);
 	}
 	return (
 		<Stack flex="1" gap="0.5rem" sx={{ "&:hover": { scale: "1.2" } }}>
@@ -31,8 +31,9 @@ const Card = ({ data }: Props) => {
 						height: "100%",
 						objectFit: "cover",
 					}}
-					src={data.thumbnail.url}
+					src={data.thumbnail?.[0].url}
 					alt={data.title}
+					onError={e=> e.currentTarget.src = data.thumbnail?.[1].url}
 				/>
 				<Stack
 					position={"absolute"}
@@ -49,7 +50,7 @@ const Card = ({ data }: Props) => {
 					bgcolor={theme.palette.primary.contrastText}>
 					<FaPlay size={30} onClick={handleClick} />
 
-					{data.duration_formatted}
+					{data.lengthText}
 				</Stack>
 			</Box>
 			<span

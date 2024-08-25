@@ -11,11 +11,7 @@ import {
 } from "@mui/material";
 import AllRoutes from "./Routes";
 import AudioPlayer from "./Components/AudioPlayer";
-import { useLocation } from "react-router-dom";
-import { PlayerDataContext } from "./Provider/PlayerContextProvider";
-import Billboard from "./Components/Billboard";
 import { useAppSelector } from "./Hooks/Redux_hooks";
-const client_id = import.meta.env.VITE_GOOGLE_ID;
 
 function App() {
 	const [hidden, setHidden] = useState(false);
